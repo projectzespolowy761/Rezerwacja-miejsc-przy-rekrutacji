@@ -7,3 +7,12 @@ E:\Reservation\ReservationPlaces\ReservationPlaces.Common\obj\Debug\netcoreapp2.
 E:\Reservation\ReservationPlaces\ReservationPlaces.Common\obj\Debug\netcoreapp2.2\ReservationPlaces.Common.AssemblyInfo.cs
 E:\Reservation\ReservationPlaces\ReservationPlaces.Common\obj\Debug\netcoreapp2.2\ReservationPlaces.Common.dll
 E:\Reservation\ReservationPlaces\ReservationPlaces.Common\obj\Debug\netcoreapp2.2\ReservationPlaces.Common.pdb
+E:\ReservationPlacesProject\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Common\bin\Debug\netcoreapp2.2\ReservationPlaces.Common.deps.json
+E:\ReservationPlacesProject\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Common\bin\Debug\netcoreapp2.2\ReservationPlaces.Common.dll
+E:\ReservationPlacesProject\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Common\bin\Debug\netcoreapp2.2\ReservationPlaces.Common.pdb
+E:\ReservationPlacesProject\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Common\obj\Debug\netcoreapp2.2\ReservationPlaces.Common.csprojAssemblyReference.cache
+E:\ReservationPlacesProject\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Common\obj\Debug\netcoreapp2.2\ReservationPlaces.Common.csproj.CoreCompileInputs.cache
+E:\ReservationPlacesProject\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Common\obj\Debug\netcoreapp2.2\ReservationPlaces.Common.AssemblyInfoInputs.cache
+E:\ReservationPlacesProject\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Common\obj\Debug\netcoreapp2.2\ReservationPlaces.Common.AssemblyInfo.cs
+E:\ReservationPlacesProject\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Common\obj\Debug\netcoreapp2.2\ReservationPlaces.Common.dll
+E:\ReservationPlacesProject\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Common\obj\Debug\netcoreapp2.2\ReservationPlaces.Common.pdb

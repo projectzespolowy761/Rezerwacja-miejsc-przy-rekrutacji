@@ -183,7 +183,7 @@ namespace ReservationPlaces.WebApp.Services
 "                      <table align='center' border='0' cellpadding='0' cellspacing='0' width='100%'>" +
 "                        <tr>" +
 "                          <td align='center' style='padding: 30px 56px 28px 56px;' valign='middle'>" +
-"<span style='font-family: \"lato\", \"Helvetica Neue\", Helvetica, Arial, sans-serif; line-height: 28px;font-size: 16px; color: #A7ADB5; vertical-align: middle;'>If this email doesn't make any sense, please <a href=\"mailto:robert.petlak@it-develop.pl\">let us know</a>!</span>" +
+"<span style='font-family: \"lato\", \"Helvetica Neue\", Helvetica, Arial, sans-serif; line-height: 28px;font-size: 16px; color: #A7ADB5; vertical-align: middle;'>If this email doesn't make any sense, please <a href=\"mailto:nazarozhga@gmail.com\">let us know</a>!</span>" +
 "                          </td>" +
 "                        </tr>" +
 "                      </table>" +
@@ -383,7 +383,7 @@ namespace ReservationPlaces.WebApp.Services
 "                      <table align='center' border='0' cellpadding='0' cellspacing='0' width='100%'>" +
 "                        <tr>" +
 "                          <td align='center' style='padding: 30px 56px 28px 56px;' valign='middle'>" +
-"<span style='font-family: \"lato\", \"Helvetica Neue\", Helvetica, Arial, sans-serif; line-height: 28px;font-size: 16px; color: #A7ADB5; vertical-align: middle;'>If this email doesn't make any sense, please <a href=\"mailto:robert.petlak@it-develop.pl\">let us know</a>!</span>" +
+"<span style='font-family: \"lato\", \"Helvetica Neue\", Helvetica, Arial, sans-serif; line-height: 28px;font-size: 16px; color: #A7ADB5; vertical-align: middle;'>If this email doesn't make any sense, please <a href=\"mailto:nazarozhga@gmail.com\">let us know</a>!</span>" +
 "                          </td>" +
 "                        </tr>" +
 "                      </table>" +

@@ -11,7 +11,7 @@ namespace ReservationPlaces.WebApp.Services
 
         public void SendEmail(string email, string subject, string bodyMessage)
         {
-            var fromAddress = new MailAddress("bartwarzik@gmail.com", "BaseBox");
+            var fromAddress = new MailAddress("bartwarzik@gmail.com", "ReserwationPlaces");
             var toAddress = new MailAddress(email);
             const string fromPassword = "bartwarzik101999";
 
@@ -37,43 +37,3 @@ namespace ReservationPlaces.WebApp.Services
     }
 }
 
-
-
-
-
-
-
-
-//using System.Net;
-//using System.Net.Mail;
-//using System.Threading.Tasks;
-
-//namespace GoogleShopping.WebApplication.Services
-//{
-//    // This class is used by the application to send email for account confirmation and password reset.
-//    // For more details see https://go.microsoft.com/fwlink/?LinkID=532713
-//    public class EmailSender : IEmailSender
-//    {
-
-//        public void SendEmail(string email, string subject, string bodyMessage)
-//        {
-//            var fromAddress = new MailAddress("robert.petlak@it-develop.pl", "BaseBox");
-//            var toAddress = new MailAddress(email);
-//            using (var client = new SmtpClient("192.168.160.50", 25))
-//            {
-//                var mailMessage = new MailMessage
-//                {
-//                    //IsBodyHtml = true,
-//                    Body = bodyMessage,
-//                    From = fromAddress,
-//                    Subject = subject
-//                };
-//                mailMessage.To.Add(toAddress);
-//                client.Send(mailMessage);
-//            }
-
-
-
-//        }
-//    }
-//}

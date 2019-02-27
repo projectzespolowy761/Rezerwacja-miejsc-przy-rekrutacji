@@ -3635,11 +3635,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Reservation\\ReservationPlaces\\ReservationPlaces.Data\\ReservationPlaces.Data.csproj",
+      "projectUniqueName": "E:\\ReservationPlacesProject\\Rezerwacja-miejsc-przy-rekrutacji\\ReservationPlaces.Data\\ReservationPlaces.Data.csproj",
       "projectName": "ReservationPlaces.Data",
-      "projectPath": "E:\\Reservation\\ReservationPlaces\\ReservationPlaces.Data\\ReservationPlaces.Data.csproj",
+      "projectPath": "E:\\ReservationPlacesProject\\Rezerwacja-miejsc-przy-rekrutacji\\ReservationPlaces.Data\\ReservationPlaces.Data.csproj",
       "packagesPath": "C:\\Users\\Nazar\\.nuget\\packages\\",
-      "outputPath": "E:\\Reservation\\ReservationPlaces\\ReservationPlaces.Data\\obj\\",
+      "outputPath": "E:\\ReservationPlacesProject\\Rezerwacja-miejsc-przy-rekrutacji\\ReservationPlaces.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -3658,8 +3658,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "E:\\Reservation\\ReservationPlaces\\ReservationPlaces.Common\\ReservationPlaces.Common.csproj": {
-              "projectPath": "E:\\Reservation\\ReservationPlaces\\ReservationPlaces.Common\\ReservationPlaces.Common.csproj"
+            "E:\\ReservationPlacesProject\\Rezerwacja-miejsc-przy-rekrutacji\\ReservationPlaces.Common\\ReservationPlaces.Common.csproj": {
+              "projectPath": "E:\\ReservationPlacesProject\\Rezerwacja-miejsc-przy-rekrutacji\\ReservationPlaces.Common\\ReservationPlaces.Common.csproj"
             }
           }
         }

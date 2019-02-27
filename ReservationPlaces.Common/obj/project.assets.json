@@ -692,11 +692,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Reservation\\ReservationPlaces\\ReservationPlaces.Common\\ReservationPlaces.Common.csproj",
+      "projectUniqueName": "E:\\ReservationPlacesProject\\Rezerwacja-miejsc-przy-rekrutacji\\ReservationPlaces.Common\\ReservationPlaces.Common.csproj",
       "projectName": "ReservationPlaces.Common",
-      "projectPath": "E:\\Reservation\\ReservationPlaces\\ReservationPlaces.Common\\ReservationPlaces.Common.csproj",
+      "projectPath": "E:\\ReservationPlacesProject\\Rezerwacja-miejsc-przy-rekrutacji\\ReservationPlaces.Common\\ReservationPlaces.Common.csproj",
       "packagesPath": "C:\\Users\\Nazar\\.nuget\\packages\\",
-      "outputPath": "E:\\Reservation\\ReservationPlaces\\ReservationPlaces.Common\\obj\\",
+      "outputPath": "E:\\ReservationPlacesProject\\Rezerwacja-miejsc-przy-rekrutacji\\ReservationPlaces.Common\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
