@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-
+import * as jwt_decode from 'jwt-decode';
 import { AuthenticationService } from '../_services';
 
 @Injectable({ providedIn: 'root' })
@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const currentUser = this.authenticationService.currentUserValue;
-        if (currentUser) {
+        if (currentUser &&  jwt_decode(currentUser.token).exp > Date.now() / 1000) {
             // logged in so return true
             return true;
         }

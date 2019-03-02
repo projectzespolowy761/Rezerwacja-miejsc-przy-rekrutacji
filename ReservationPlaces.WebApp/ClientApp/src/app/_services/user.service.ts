@@ -7,5 +7,4 @@ import { User } from '../_models';
 export class UserService {
     constructor(private http: HttpClient) { }
 
-   
 }

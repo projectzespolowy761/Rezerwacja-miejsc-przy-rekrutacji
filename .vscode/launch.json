@@ -8,8 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Client",
-            "url": "http://localhost:5000",
-            "webRoot": "${workspaceFolder}"
+            "url": "http://localhost:5000"
         },
         {
             "name": "Server",

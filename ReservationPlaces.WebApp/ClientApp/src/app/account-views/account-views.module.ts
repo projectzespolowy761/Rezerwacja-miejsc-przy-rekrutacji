@@ -9,7 +9,9 @@ import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ResetPasswordConfirmationComponent } from './reset-password-confirmation/reset-password-confirmation.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     ConfirmedEmailComponent,
@@ -22,9 +24,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ResetPasswordConfirmationComponent
   ],
   imports: [
+    BrowserAnimationsModule,
+    RouterModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   exports: [
     ConfirmedEmailComponent,
