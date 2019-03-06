@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
 import { first } from 'rxjs/operators';
 
-import { User } from '../_models';
+import { LoginViewModel } from '../_models';
 import { UserService, AuthenticationService } from '../_services';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent {
-    users: User[] = [];
 
   constructor(private userService: UserService, public http: HttpClient) { }
 
     ngOnInit() {
-      
+
     }
 
   buttonClick() {
@@ -32,5 +31,5 @@ export class HomeComponent {
     );
   }
 
- 
+
 }
