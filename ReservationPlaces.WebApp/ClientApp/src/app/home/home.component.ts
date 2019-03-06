@@ -31,5 +31,13 @@ export class HomeComponent {
     );
   }
 
+  buttonClick2() {
+    let name: string = 'asdasd';
+    return this.http.get<any>('/home/getget').subscribe(
+      data => {
+        console.log(data);
+      }
+    );
+  }
 
 }
