@@ -74,6 +74,7 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['/account/confirm-email']);
         },
         error => {
+          console.log(error);
           this.loading = false;
           this.errors = error[''];
         });

@@ -98,7 +98,8 @@ namespace ReservationPlaces.WebApp
 				options.UseSqlServer(ConstDbString.ConnectionStringDb));
 
 			services.AddIdentity<ApplicationUser, IdentityRole>()
-				.AddEntityFrameworkStores<ApplicationDbContext>();
+				.AddEntityFrameworkStores<ApplicationDbContext>()
+				.AddDefaultTokenProviders();
 
 
 			services.AddTransient<IEmailSender, EmailSender>();
