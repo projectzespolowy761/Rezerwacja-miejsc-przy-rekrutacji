@@ -26,3 +26,17 @@ E:\ReservationPlacesProject\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.
 E:\ReservationPlacesProject\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Data\obj\Debug\netcoreapp2.2\ReservationPlaces.Data.csproj.CopyComplete
 E:\ReservationPlacesProject\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Data\obj\Debug\netcoreapp2.2\ReservationPlaces.Data.dll
 E:\ReservationPlacesProject\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Data\obj\Debug\netcoreapp2.2\ReservationPlaces.Data.pdb
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Data\bin\Debug\netcoreapp2.2\ReservationPlaces.Data.deps.json
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Data\bin\Debug\netcoreapp2.2\ReservationPlaces.Data.runtimeconfig.json
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Data\bin\Debug\netcoreapp2.2\ReservationPlaces.Data.runtimeconfig.dev.json
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Data\bin\Debug\netcoreapp2.2\ReservationPlaces.Data.dll
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Data\bin\Debug\netcoreapp2.2\ReservationPlaces.Data.pdb
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Data\bin\Debug\netcoreapp2.2\ReservationPlaces.Common.dll
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Data\bin\Debug\netcoreapp2.2\ReservationPlaces.Common.pdb
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Data\obj\Debug\netcoreapp2.2\ReservationPlaces.Data.csprojAssemblyReference.cache
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Data\obj\Debug\netcoreapp2.2\ReservationPlaces.Data.csproj.CoreCompileInputs.cache
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Data\obj\Debug\netcoreapp2.2\ReservationPlaces.Data.AssemblyInfoInputs.cache
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Data\obj\Debug\netcoreapp2.2\ReservationPlaces.Data.AssemblyInfo.cs
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Data\obj\Debug\netcoreapp2.2\ReservationPlaces.Data.csproj.CopyComplete
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Data\obj\Debug\netcoreapp2.2\ReservationPlaces.Data.dll
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Data\obj\Debug\netcoreapp2.2\ReservationPlaces.Data.pdb

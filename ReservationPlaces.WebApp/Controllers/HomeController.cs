@@ -4,7 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ReservationPlaces.WebApp.Models;
+using ReservationPlaces.WebApp.Services;
 
 namespace ReservationPlaces.WebApp.Controllers
 {
@@ -12,7 +15,23 @@ namespace ReservationPlaces.WebApp.Controllers
 	[Route("[controller]/[action]")]
 	public class HomeController : Controller
     {
-		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "PowerUser")]
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IEmailSender _emailSender;
+
+        public HomeController(
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            IEmailSender emailSender,
+            RoleManager<IdentityRole> roleManager)
+        {
+            _roleManager = roleManager;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _emailSender = emailSender;
+        }
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "PowerUser")]
 		[HttpGet]
 		public IEnumerable<string> Get()
 		{
@@ -22,10 +41,10 @@ namespace ReservationPlaces.WebApp.Controllers
 	
 		
 		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-		[Authorize(Roles = "Administrator")]
 		[HttpPost]
 		public IEnumerable<string> Post([FromBody]string name)
 		{
+		    _userManager.GetUserId(User);
 			return new string[] { "John Doe", "Jane Doe" };
 		}
 

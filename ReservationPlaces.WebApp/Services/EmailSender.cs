@@ -11,7 +11,7 @@ namespace ReservationPlaces.WebApp.Services
 
         public void SendEmail(string email, string subject, string bodyMessage)
         {
-            var fromAddress = new MailAddress("bartwarzik@gmail.com", "ReserwationPlaces");
+            var fromAddress = new MailAddress("nubis091@gmail.com", "ReserwationPlaces");
             var toAddress = new MailAddress(email);
             const string fromPassword = "bartwarzik101999";
 

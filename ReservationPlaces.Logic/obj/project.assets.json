@@ -477,7 +477,7 @@
       ]
     },
     "Microsoft.NETCore.DotNetAppHost/2.2.0": {
-      "sha512": "OK/H8p9Ig6mLMITjXJ4VOewrJg/TU+dAPHE4BdMWMv+8COzBehf7XF1+DofKkmqdHpO2cJoS5Sc9PEZ6PKCbsg==",
+      "sha512": "qIrVLupwT2NYTrf7KM7Nh+mJr36V5MITVRjyGOByVVCwGmQgQmI/6bjZYQv+QdExi4Cm87eCKJX9FdT6nc00Xg==",
       "type": "package",
       "path": "microsoft.netcore.dotnetapphost/2.2.0",
       "files": [
@@ -686,23 +686,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Nazar\\.nuget\\packages\\": {},
+    "C:\\Users\\11984\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\ReservationPlacesProject\\Rezerwacja-miejsc-przy-rekrutacji\\ReservationPlaces.Logic\\ReservationPlaces.Logic.csproj",
+      "projectUniqueName": "C:\\Users\\11984\\Rezerwacja-miejsc-przy-rekrutacji\\ReservationPlaces.Logic\\ReservationPlaces.Logic.csproj",
       "projectName": "ReservationPlaces.Logic",
-      "projectPath": "E:\\ReservationPlacesProject\\Rezerwacja-miejsc-przy-rekrutacji\\ReservationPlaces.Logic\\ReservationPlaces.Logic.csproj",
-      "packagesPath": "C:\\Users\\Nazar\\.nuget\\packages\\",
-      "outputPath": "E:\\ReservationPlacesProject\\Rezerwacja-miejsc-przy-rekrutacji\\ReservationPlaces.Logic\\obj\\",
+      "projectPath": "C:\\Users\\11984\\Rezerwacja-miejsc-przy-rekrutacji\\ReservationPlaces.Logic\\ReservationPlaces.Logic.csproj",
+      "packagesPath": "C:\\Users\\11984\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\11984\\Rezerwacja-miejsc-przy-rekrutacji\\ReservationPlaces.Logic\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Nazar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\11984\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

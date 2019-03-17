@@ -1,0 +1,9 @@
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Logic\obj\Debug\netcoreapp2.2\ReservationPlaces.Logic.csprojAssemblyReference.cache
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Logic\obj\Debug\netcoreapp2.2\ReservationPlaces.Logic.csproj.CoreCompileInputs.cache
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Logic\obj\Debug\netcoreapp2.2\ReservationPlaces.Logic.AssemblyInfoInputs.cache
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Logic\obj\Debug\netcoreapp2.2\ReservationPlaces.Logic.AssemblyInfo.cs
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Logic\bin\Debug\netcoreapp2.2\ReservationPlaces.Logic.deps.json
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Logic\bin\Debug\netcoreapp2.2\ReservationPlaces.Logic.dll
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Logic\bin\Debug\netcoreapp2.2\ReservationPlaces.Logic.pdb
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Logic\obj\Debug\netcoreapp2.2\ReservationPlaces.Logic.dll
+C:\Users\11984\Rezerwacja-miejsc-przy-rekrutacji\ReservationPlaces.Logic\obj\Debug\netcoreapp2.2\ReservationPlaces.Logic.pdb
