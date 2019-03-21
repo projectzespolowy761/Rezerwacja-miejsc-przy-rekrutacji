@@ -22,5 +22,6 @@ namespace ReservationPlaces.Data
 
 		//entities
 		public DbSet<ReservationDAL> Reservation { get; set; }
+		public DbSet<AdminSettingsDAL> AdminSettings { get; set; }
 	}
 }

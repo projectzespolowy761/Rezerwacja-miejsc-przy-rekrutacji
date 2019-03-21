@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ReservationPlaces.Logic.Interfaces
 {
-    public interface IAdmSettings
+    public interface IAdminSettingsBLL
     {
          int Id { get; set; }
          string UserId { get; set; }

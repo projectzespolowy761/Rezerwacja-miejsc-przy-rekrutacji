@@ -5,7 +5,7 @@ using ReservationPlaces.Logic.Interfaces;
 
 namespace ReservationPlaces.Logic.Models
 {
-    class AdmSettings:IAdmSettings
+    class AdminSettingsBLL:IAdminSettingsBLL
     {
         public int Id { get; set; }
         public string UserId { get; set; }

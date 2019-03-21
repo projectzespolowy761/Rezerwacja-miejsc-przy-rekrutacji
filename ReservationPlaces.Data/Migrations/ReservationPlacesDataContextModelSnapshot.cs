@@ -19,6 +19,30 @@ namespace ReservationPlaces.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ReservationPlaces.Data.Models.AdminSettingsDAL", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CloseHour");
+
+                    b.Property<DateTime>("EndPeriod");
+
+                    b.Property<int>("Interval");
+
+                    b.Property<DateTime>("OpenHour");
+
+                    b.Property<DateTime>("StartPeriod");
+
+                    b.Property<string>("UserId")
+                        .HasMaxLength(450);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AdminSettings");
+                });
+
             modelBuilder.Entity("ReservationPlaces.Data.Models.ReservationDAL", b =>
                 {
                     b.Property<int>("Id")

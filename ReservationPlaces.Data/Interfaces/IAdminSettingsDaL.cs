@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ReservationPlaces.Data.Interfaces
 {
-    interface IAdminSettingsDAL:IParrentModel
+    interface IAdminSettingsDAL	: IParrentModel
     {
         string UserId { get; set; }
         DateTime StartPeriod { get; set; }

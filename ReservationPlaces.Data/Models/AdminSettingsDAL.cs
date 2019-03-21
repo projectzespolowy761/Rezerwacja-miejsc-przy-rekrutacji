@@ -5,7 +5,7 @@ using ReservationPlaces.Data.Interfaces;
 
 namespace ReservationPlaces.Data.Models
 {
-    [Table("Settings")]
+    [Table("AdminSettings")]
     public class AdminSettingsDAL : IAdminSettingsDAL
     {
         [Key]

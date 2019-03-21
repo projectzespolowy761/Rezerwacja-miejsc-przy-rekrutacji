@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReservationPlaces.Data;
 
-namespace ReservationPlaces.Data.Migrations.AdminSettingsData
+namespace ReservationPlaces.Data.Migrations
 {
-    [DbContext(typeof(AdminSettingsDataContext))]
-    [Migration("20190315130018_FirstMigration")]
-    partial class FirstMigration
+    [DbContext(typeof(ReservationPlacesDataContext))]
+    [Migration("20190321181556_AddAdminSettings")]
+    partial class AddAdminSettings
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,7 +42,23 @@ namespace ReservationPlaces.Data.Migrations.AdminSettingsData
 
                     b.HasKey("Id");
 
-                    b.ToTable("Settings");
+                    b.ToTable("AdminSettings");
+                });
+
+            modelBuilder.Entity("ReservationPlaces.Data.Models.ReservationDAL", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("ReservationDate");
+
+                    b.Property<string>("UserId")
+                        .HasMaxLength(450);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Reservation");
                 });
 #pragma warning restore 612, 618
         }
