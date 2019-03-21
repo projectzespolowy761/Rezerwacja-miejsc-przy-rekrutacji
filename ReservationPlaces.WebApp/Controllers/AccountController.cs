@@ -69,7 +69,7 @@ namespace ReservationPlaces.WebApp.Controllers
 					var claims = new List<Claim>();
 
 					var roles = await _userManager.GetRolesAsync(user);
-
+					if(roles.Any()){
 					if (roles[0]=="Administrator") {
 
 						claims = new List<Claim>
@@ -77,6 +77,7 @@ namespace ReservationPlaces.WebApp.Controllers
 							new Claim(ClaimTypes.Name, user.UserName),
 							new Claim(ClaimTypes.Role, "Administrator")
 						};
+					}
 					}
 
 					var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Common.ConstVal.SecurityKey));
@@ -137,6 +138,7 @@ namespace ReservationPlaces.WebApp.Controllers
 
 					return Ok();
 				}
+					ModelState.AddModelError(string.Empty, "Podany adres jest już zarejestrowany ");
 			}
 
 			// If we got this far, something failed, redisplay form

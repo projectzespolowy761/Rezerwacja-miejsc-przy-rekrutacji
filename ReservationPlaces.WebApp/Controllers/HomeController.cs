@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ReservationPlaces.WebApp.Controllers
 {
-	[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 	[Route("[controller]/[action]")]
 	public class HomeController : Controller
     {
@@ -29,8 +28,9 @@ namespace ReservationPlaces.WebApp.Controllers
 			return new string[] { "John Doe", "Jane Doe" };
 		}
 
+		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 		[HttpGet]
-		public IEnumerable<string> GetGet([FromBody]string name)
+		public IEnumerable<string> GetGet()
 		{
 			return new string[] { "John Doe", "Jane Doe" };
 		}

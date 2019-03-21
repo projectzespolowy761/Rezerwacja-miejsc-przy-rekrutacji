@@ -154,7 +154,7 @@ namespace ReservationPlaces.WebApp.Services
 "                        </tr>" +
 "                        <tr>" +
 "                          <td align='left' style='padding: 0 56px 28px 56px;' valign='top'>" +
-"                            <div style='font-family: \"lato\", \"Helvetica Neue\", Helvetica, Arial, sans-serif; line-height: 28px;font-size: 18px; color: #333;'>Dziękujemy za rejestrację na platformie Basebox.pl. Aby móc zacząć pracę aktywuj konto <strong>" + email + "</strong> " +
+"                            <div style='font-family: \"lato\", \"Helvetica Neue\", Helvetica, Arial, sans-serif; line-height: 28px;font-size: 18px; color: #333;'>Dziękujemy za rejestrację. Aby móc zacząć pracę aktywuj konto <strong>" + email + "</strong> " +
 "                              klikając przycisk poniżej:</div>" +
 "                          </td>" +
 "                        </tr>" +
@@ -165,10 +165,10 @@ namespace ReservationPlaces.WebApp.Services
 "                                <v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w=\"urn:schemas-microsoft-com:office:word\"" +
 "                                href=\"#\"" +
 "                                style=\"height:44px;v-text-anchor:middle;width:250px;\" arcsize=\"114%\" stroke=\"f\"" +
-"                                fillcolor=\"#E15718\">" +
+"                                fillcolor=\"#007bff\">" +
 "                                  <w:anchorlock/>" +
 "                                <![endif]-->" +
-"                                <a style=\"background-color:#E15718;border-radius:50px;color:#ffffff;display:inline-block;font-family: &#39;lato&#39;, &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:18px;line-height:44px;text-align:center;text-decoration:none;width:250px;-webkit-text-size-adjust:none;\"" +
+"                                <a style=\"background-color:#007bff;border-radius:50px;color:#ffffff;display:inline-block;font-family: &#39;lato&#39;, &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:18px;line-height:44px;text-align:center;text-decoration:none;width:250px;-webkit-text-size-adjust:none;\"" +
 "                                href=" + link + ">Aktywuj konto</a>" +
 "                                <!--[if mso]>" +
 "                                </v:roundrect>" +
@@ -183,7 +183,7 @@ namespace ReservationPlaces.WebApp.Services
 "                      <table align='center' border='0' cellpadding='0' cellspacing='0' width='100%'>" +
 "                        <tr>" +
 "                          <td align='center' style='padding: 30px 56px 28px 56px;' valign='middle'>" +
-"<span style='font-family: \"lato\", \"Helvetica Neue\", Helvetica, Arial, sans-serif; line-height: 28px;font-size: 16px; color: #A7ADB5; vertical-align: middle;'>If this email doesn't make any sense, please <a href=\"mailto:robert.petlak@it-develop.pl\">let us know</a>!</span>" +
+"<span style='font-family: \"lato\", \"Helvetica Neue\", Helvetica, Arial, sans-serif; line-height: 28px;font-size: 16px; color: #A7ADB5; vertical-align: middle;'>If this email doesn't make any sense, please <a href=\"mailto:warzikbart@gmail.com\">let us know</a>!</span>" +
 "                          </td>" +
 "                        </tr>" +
 "                      </table>" +
@@ -365,10 +365,10 @@ namespace ReservationPlaces.WebApp.Services
 "                                <v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w=\"urn:schemas-microsoft-com:office:word\"" +
 "                                href=\"#\"" +
 "                                style=\"height:44px;v-text-anchor:middle;width:250px;\" arcsize=\"114%\" stroke=\"f\"" +
-"                                fillcolor=\"#E15718\">" +
+"                                fillcolor=\"#007bff\">" +
 "                                  <w:anchorlock/>" +
 "                                <![endif]-->" +
-"                                <a style=\"background-color:#E15718;border-radius:50px;color:#ffffff;display:inline-block;font-family: &#39;lato&#39;, &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:18px;line-height:44px;text-align:center;text-decoration:none;width:250px;-webkit-text-size-adjust:none;\"" +
+"                                <a style=\"background-color:#007bff;border-radius:50px;color:#ffffff;display:inline-block;font-family: &#39;lato&#39;, &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:18px;line-height:44px;text-align:center;text-decoration:none;width:250px;-webkit-text-size-adjust:none;\"" +
 "                                href=" + link + ">Resetuj hasło</a>" +
 "                                <!--[if mso]>" +
 "                                </v:roundrect>" +
@@ -383,7 +383,7 @@ namespace ReservationPlaces.WebApp.Services
 "                      <table align='center' border='0' cellpadding='0' cellspacing='0' width='100%'>" +
 "                        <tr>" +
 "                          <td align='center' style='padding: 30px 56px 28px 56px;' valign='middle'>" +
-"<span style='font-family: \"lato\", \"Helvetica Neue\", Helvetica, Arial, sans-serif; line-height: 28px;font-size: 16px; color: #A7ADB5; vertical-align: middle;'>If this email doesn't make any sense, please <a href=\"mailto:robert.petlak@it-develop.pl\">let us know</a>!</span>" +
+"<span style='font-family: \"lato\", \"Helvetica Neue\", Helvetica, Arial, sans-serif; line-height: 28px;font-size: 16px; color: #A7ADB5; vertical-align: middle;'>If this email doesn't make any sense, please <a href=\"mailto:warzikbart@gmail.com\">let us know</a>!</span>" +
 "                          </td>" +
 "                        </tr>" +
 "                      </table>" +
