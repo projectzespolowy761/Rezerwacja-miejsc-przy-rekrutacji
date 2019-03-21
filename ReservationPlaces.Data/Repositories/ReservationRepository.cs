@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReservationPlaces.Data.Repositories
 {
-	class ReservationRepository : IReservationRepository
+	public class ReservationRepository : IReservationRepository
 	{
 
 		private readonly ReservationPlacesDataContext _context;

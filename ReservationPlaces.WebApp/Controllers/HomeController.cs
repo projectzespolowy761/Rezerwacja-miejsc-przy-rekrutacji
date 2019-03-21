@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ReservationPlaces.Data.Models;
+using ReservationPlaces.Logic.Interfaces;
+using ReservationPlaces.Logic.Services;
 using ReservationPlaces.WebApp.Models;
 using ReservationPlaces.WebApp.Services;
 
@@ -44,7 +47,14 @@ namespace ReservationPlaces.WebApp.Controllers
 		[HttpPost]
 		public IEnumerable<string> Post([FromBody]string name)
 		{
-		    _userManager.GetUserId(User);
+		    ReservationDAL reservation =new ReservationDAL();
+		    reservation.Id = 1;
+            reservation.ReservationDate=DateTime.Now;
+		    reservation.UserId = "213";
+            ReservationServices services=new ReservationServices();
+		    services.AddReservation(reservation);
+		    string userid = User.FindFirst("id").Value;
+            _userManager.GetUserId(User);
 			return new string[] { "John Doe", "Jane Doe" };
 		}
 

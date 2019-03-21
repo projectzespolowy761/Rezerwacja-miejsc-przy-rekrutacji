@@ -28,10 +28,10 @@
   <ItemGroup>
     <ProjectReference Include="..\ReservationPlaces.Common\ReservationPlaces.Common.csproj" />
     <ProjectReference Include="..\ReservationPlaces.Data\ReservationPlaces.Data.csproj" />
+    <ProjectReference Include="..\ReservationPlaces.Logic\ReservationPlaces.Logic.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Migrations\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Helper\" />
   </ItemGroup>

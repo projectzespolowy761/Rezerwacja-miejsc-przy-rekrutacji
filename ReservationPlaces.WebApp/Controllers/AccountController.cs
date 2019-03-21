@@ -26,7 +26,6 @@ namespace ReservationPlaces.WebApp.Controllers
 		private readonly SignInManager<ApplicationUser> _signInManager;
 		private readonly RoleManager<IdentityRole> _roleManager;
 		private readonly IEmailSender _emailSender;
-
 		public AccountController(
 			UserManager<ApplicationUser> userManager,
 			SignInManager<ApplicationUser> signInManager,
