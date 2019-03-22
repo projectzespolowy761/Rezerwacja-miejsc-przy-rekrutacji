@@ -10,9 +10,6 @@ export class HomeComponent {
 
   constructor(private userService: UserService, public http: HttpClient) { }
 
-    ngOnInit() {
-
-    }
 
   buttonClick() {
     return this.http.get<any>('/home/get').subscribe(

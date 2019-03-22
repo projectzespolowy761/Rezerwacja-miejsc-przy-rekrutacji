@@ -11,6 +11,7 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { AccountViewsModule } from './account-views/account-views.module';
 import { RouterModule } from '@angular/router';
+import { AdminCalendarViewModule } from './admin-calendar-view/admin-calendar-view.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     AccountViewsModule,
+    AdminCalendarViewModule,
     NgbModule
   ],
   providers: [

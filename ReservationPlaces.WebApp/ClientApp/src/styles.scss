@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'variables';
 @import '../node_modules/bootstrap/scss/bootstrap';
-
+@import '../node_modules/angular-calendar/scss/angular-calendar';
+@import '../node_modules/flatpickr/dist/flatpickr.min.css';
 html{
   height: 100%;
 }
@@ -14,7 +15,6 @@ $hollowBoxSize: 1.5em;
 $hollowLight: #ECECEC;
 $hollowDark: #007bff;
 $hollowTiming: 1.25s;
-
 
 .hollowLoader {
   width: $hollowBoxSize;
@@ -49,3 +49,14 @@ $hollowTiming: 1.25s;
   100% {transform: rotate(90deg);}
 }
 
+
+
+.cal-day-view .cal-hour-segment.cal-after-hour-start .cal-time {
+  display: block;
+  text-align: center;
+}
+
+.cal-week-view .cal-hour-segment.cal-after-hour-start .cal-time {
+  display: block;
+  text-align: center;
+}

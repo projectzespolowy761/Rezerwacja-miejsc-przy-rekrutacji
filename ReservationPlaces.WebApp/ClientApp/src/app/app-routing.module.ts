@@ -10,12 +10,13 @@ import { ForgotPasswordConfirmationComponent } from './account-views/forgot-pass
 import { ResetPasswordConfirmationComponent } from './account-views/reset-password-confirmation/reset-password-confirmation.component';
 import { ResetPasswordComponent } from './account-views/reset-password/reset-password.component';
 import { ConfirmedEmailComponent } from './account-views/confirmed-email/confirmed-email.component';
+import { AdminCalendarComponent } from './admin-calendar-view/admin-calendar/admin-calendar.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     component: HomeComponent
   },
   {
@@ -28,6 +29,8 @@ const routes: Routes = [
       { path: 'reset-password-confirmation', component: ResetPasswordConfirmationComponent },
     ]
   },
+  {path: 'calendar', component: AdminCalendarComponent},
+
   { path: 'Account/ResetPassword', component: ResetPasswordComponent },
   { path: 'Account/ConfirmEmail', component: ConfirmedEmailComponent },
   // otherwise redirect to home
