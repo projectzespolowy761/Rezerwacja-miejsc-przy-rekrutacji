@@ -6,5 +6,6 @@ namespace ReservationPlaces.Logic.Interfaces
 {
 	public interface IReservationServices
 	{
+		void AddReservation(IReservationBLL article);
 	}
 }

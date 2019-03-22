@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ReservationPlaces.Logic.Interfaces;
+using ReservationPlaces.Logic.Models;
+using ReservationPlaces.Logic.Services;
 using ReservationPlaces.WebApp.Models;
 using ReservationPlaces.WebApp.Services;
 
@@ -14,23 +17,13 @@ namespace ReservationPlaces.WebApp.Controllers
 	[Route("[controller]/[action]")]
 	public class HomeController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly IEmailSender _emailSender;
+		private readonly IReservationServices _reservationServices;
 
-        public HomeController(
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
-            IEmailSender emailSender,
-            RoleManager<IdentityRole> roleManager)
+		public HomeController(IReservationServices reservationServices)
         {
-            _roleManager = roleManager;
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _emailSender = emailSender;
-        }
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "PowerUser")]
+			_reservationServices = reservationServices;
+		}
+
 		[HttpGet]
 		public IEnumerable<string> Get()
 		{
@@ -39,11 +32,10 @@ namespace ReservationPlaces.WebApp.Controllers
 
 	
 		
-		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 		[HttpPost]
 		public IEnumerable<string> Post([FromBody]string name)
 		{
-		    _userManager.GetUserId(User);
+			_reservationServices.AddReservation(new ReservationBLL() { Id = 2,ReservationDate=new DateTime(),UserId="asdas"});
 			return new string[] { "John Doe", "Jane Doe" };
 		}
 
