@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ReservationPlaces.Logic.Interfaces
 {
-	class IAdminSettingsServices
+	public class IAdminSettingsServices
 	{
 	}
 }

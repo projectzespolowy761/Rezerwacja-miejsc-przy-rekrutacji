@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ReservationPlaces.Data.Repositories
 {
-	class AdminSettingsRepository : IAdminSettingsRepository
+	public class AdminSettingsRepository : IAdminSettingsRepository
 	{
 
 		private readonly ReservationPlacesDataContext _context;
