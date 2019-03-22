@@ -50,6 +50,57 @@ $hollowTiming: 1.25s;
 }
 
 
+a {
+  outline: none !important;
+  text-decoration: none !important;
+}
+
+.dropdown .dropdown-menu {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+
+  -webkit-transition-timing-function: ease;
+  transition-timing-function:ease;
+
+  -webkit-transform: translate3d(0, 40%, 0);
+  transform: translate3d(0, 40%, 0);
+
+  pointer-events: none;
+
+  // max-height: 0;
+  display: block;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.dropdown.show .dropdown-menu {
+  // max-height: 200px;
+  opacity: 1;
+  pointer-events: all;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+
+  -webkit-transition-timing-function: ease;
+  transition-timing-function:ease;
+
+}
+
+::-webkit-input-placeholder {
+  color: #a19a9a;
+}
+:-ms-input-placeholder {
+  color: #a19a9a;
+}
+::-ms-input-placeholder {
+  color: #a19a9a;
+}
+::placeholder {
+  color: #a19a9a;
+}
+
 
 .cal-day-view .cal-hour-segment.cal-after-hour-start .cal-time {
   display: block;

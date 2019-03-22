@@ -9,7 +9,7 @@ using ReservationPlaces.WebApp.Models;
 using ReservationPlaces.WebApp.Services;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
-using ReservationPlaces.WebApplication.Models.AccountViewModels;
+using ReservationPlaces.WebApp.Models.AccountViewModels;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;

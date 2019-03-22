@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ReservationPlaces.WebApplication.Models.AccountViewModels
+namespace ReservationPlaces.WebApp.Models.AccountViewModels
 {
     public class ResetPasswordViewModel
     {

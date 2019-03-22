@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './_guards';
-import { HomeComponent } from './home';
 import { LoginComponent } from './account-views/login/login.component';
 import { RegisterComponent } from './account-views/register/register.component';
 import { ConfirmEmailComponent } from './account-views/confirm-email/confirm-email.component';
@@ -11,13 +10,20 @@ import { ResetPasswordConfirmationComponent } from './account-views/reset-passwo
 import { ResetPasswordComponent } from './account-views/reset-password/reset-password.component';
 import { ConfirmedEmailComponent } from './account-views/confirmed-email/confirmed-email.component';
 import { AdminCalendarComponent } from './admin-calendar-view/admin-calendar/admin-calendar.component';
+import { HomeBodyComponent } from './client-views/home-body/home-body.component';
+import { ClientHeaderComponent } from './client-views/client-header/client-header.component';
+import { ClientFooterComponent } from './client-views/client-footer/client-footer.component';
 
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home', children:
+    [
+      { path: '', component: HomeBodyComponent },
+      { path: '', component: ClientHeaderComponent ,  outlet: 'header' },
+      { path: '', component: ClientFooterComponent ,  outlet: 'footer' },
+    ]
     // canActivate: [AuthGuard],
-    component: HomeComponent
   },
   {
     path: 'account', children: [
@@ -34,7 +40,7 @@ const routes: Routes = [
   { path: 'Account/ResetPassword', component: ResetPasswordComponent },
   { path: 'Account/ConfirmEmail', component: ConfirmedEmailComponent },
   // otherwise redirect to home
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({

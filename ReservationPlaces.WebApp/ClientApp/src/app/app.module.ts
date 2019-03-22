@@ -8,15 +8,14 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { HomeComponent } from './home';
 import { AccountViewsModule } from './account-views/account-views.module';
 import { RouterModule } from '@angular/router';
 import { AdminCalendarViewModule } from './admin-calendar-view/admin-calendar-view.module';
+import { ClientViewsModule } from './client-views/client-views.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
   ],
   imports: [
     RouterModule,
@@ -27,6 +26,7 @@ import { AdminCalendarViewModule } from './admin-calendar-view/admin-calendar-vi
     ReactiveFormsModule,
     AccountViewsModule,
     AdminCalendarViewModule,
+    ClientViewsModule,
     NgbModule
   ],
   providers: [
