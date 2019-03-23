@@ -6,24 +6,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ReservationPlaces.Data.Models;
+using AutoMapper;
 
 namespace ReservationPlaces.Data.Repositories
 {
 	public class ReservationRepository : IReservationRepository
 	{
-
-		private readonly ReservationPlacesDataContext _context;
+	    private readonly MapperConfiguration configuration;
+        private readonly ReservationPlacesDataContext _context;
 		public ReservationRepository(ReservationPlacesDataContext context)
 		{
 			_context = context;
-		}
+		    configuration = new MapperConfiguration(cfg => { cfg.CreateMap<IReservationDAL, ReservationDAL>(); });
+        }
 
 		public int Add(IReservationDAL item)
 		{
-			var data = _context.Add(item);
-			_context.SaveChanges();
-			_context.Entry(item).State = EntityState.Detached;
-			return data.Entity.Id;
+		    IMapper iMapper = configuration.CreateMapper();
+
+		    var source = item;
+
+		    ReservationDAL reservation = iMapper.Map<IReservationDAL, ReservationDAL>(source);
+            try
+		        {
+		         _context.Reservation.Add(reservation);
+                 _context.SaveChangesAsync();
+		        }
+		        catch (DbUpdateException ex)
+		        {
+		            Console.WriteLine(ex);
+		        }
+
+            _context.Entry(item).State = EntityState.Detached;
+
+		    return 0;
 		}
 
 		public void AddMany(IEnumerable<IReservationDAL> items)

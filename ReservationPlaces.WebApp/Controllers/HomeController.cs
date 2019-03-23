@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ReservationPlaces.Data.Models;
 using ReservationPlaces.Logic.Interfaces;
 using ReservationPlaces.Logic.Services;
@@ -14,7 +17,6 @@ using ReservationPlaces.WebApp.Services;
 
 namespace ReservationPlaces.WebApp.Controllers
 {
-	[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 	[Route("[controller]/[action]")]
 	public class HomeController : Controller
     {
@@ -22,17 +24,18 @@ namespace ReservationPlaces.WebApp.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IEmailSender _emailSender;
+        private IHttpContextAccessor _httpContext;
 
         public HomeController(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
+            IHttpContextAccessor httpContext,
             IEmailSender emailSender,
             RoleManager<IdentityRole> roleManager)
         {
             _roleManager = roleManager;
             _userManager = userManager;
-            _signInManager = signInManager;
             _emailSender = emailSender;
+            _httpContext = httpContext;
         }
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "PowerUser")]
 		[HttpGet]
@@ -45,21 +48,23 @@ namespace ReservationPlaces.WebApp.Controllers
 		
 		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 		[HttpPost]
-		public IEnumerable<string> Post([FromBody]string name)
+		public async Task<IActionResult> Post([FromBody]string name)
 		{
-		    ReservationDAL reservation =new ReservationDAL();
-		    reservation.Id = 1;
+            
+		    string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            ReservationDAL reservation =new ReservationDAL();
             reservation.ReservationDate=DateTime.Now;
-		    reservation.UserId = "213";
+		    reservation.UserId = userId;
             ReservationServices services=new ReservationServices();
-		    services.AddReservation(reservation);
+		    await services.AddReservation(reservation);
 		    string userid = User.FindFirst("id").Value;
             _userManager.GetUserId(User);
-			return new string[] { "John Doe", "Jane Doe" };
+			return Ok();
 		}
 
+		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 		[HttpGet]
-		public IEnumerable<string> GetGet([FromBody]string name)
+		public IEnumerable<string> GetGet()
 		{
 			return new string[] { "John Doe", "Jane Doe" };
 		}

@@ -8,6 +8,8 @@ import { ConfirmEmailComponent } from './account-views/confirm-email/confirm-ema
 import { ForgotPasswordComponent } from './account-views/forgot-password/forgot-password.component';
 import { ForgotPasswordConfirmationComponent } from './account-views/forgot-password-confirmation/forgot-password-confirmation.component';
 import { ResetPasswordConfirmationComponent } from './account-views/reset-password-confirmation/reset-password-confirmation.component';
+import { ResetPasswordComponent } from './account-views/reset-password/reset-password.component';
+import { ConfirmedEmailComponent } from './account-views/confirmed-email/confirmed-email.component';
 
 
 const routes: Routes = [
@@ -26,7 +28,8 @@ const routes: Routes = [
       { path: 'reset-password-confirmation', component: ResetPasswordConfirmationComponent },
     ]
   },
-
+  { path: 'Account/ResetPassword', component: ResetPasswordComponent },
+  { path: 'Account/ConfirmEmail', component: ConfirmedEmailComponent },
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];

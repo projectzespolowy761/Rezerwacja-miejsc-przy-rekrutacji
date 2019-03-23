@@ -7,7 +7,7 @@ namespace ReservationPlaces.Data.Models
 	[Table("Reservation")]
 	public class ReservationDAL : IReservationDAL
 	{
-		[Key]
+		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }
 		[MaxLength(450)]
 		public string UserId { get; set; }

@@ -50,7 +50,7 @@ namespace ReservationPlaces.WebApp.Controllers
 				// This doesn't count login failures towards account lockout
 				// To enable password failures to trigger account lockout, set lockoutOnFailure: true
 				var user = await _signInManager.UserManager.FindByEmailAsync(model.Email);
-				if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+			    if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
 				{
 					ModelState.AddModelError(string.Empty, "Zły adres email,hasło lub email nie został potwierdzony");
 					return BadRequest(ModelState);
@@ -68,7 +68,7 @@ namespace ReservationPlaces.WebApp.Controllers
 					var claims = new List<Claim>();
 
 					var roles = await _userManager.GetRolesAsync(user);
-
+					if(roles.Any()){
 					if (roles[0]=="Administrator") {
 
 						claims = new List<Claim>
@@ -77,7 +77,14 @@ namespace ReservationPlaces.WebApp.Controllers
 							new Claim(ClaimTypes.Role, "Administrator")
 						};
 					}
+					}
+				    claims = new List<Claim>
+				    {
+				        new Claim(ClaimTypes.NameIdentifier,user.Id),
+				        new Claim(ClaimTypes.Role, "Default")
+                    };
 
+                  // var claim = await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.NameIdentifier,user.Id));
 					var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Common.ConstVal.SecurityKey));
 					var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
@@ -136,6 +143,7 @@ namespace ReservationPlaces.WebApp.Controllers
 
 					return Ok();
 				}
+					ModelState.AddModelError(string.Empty, "Podany adres jest już zarejestrowany ");
 			}
 
 			// If we got this far, something failed, redisplay form

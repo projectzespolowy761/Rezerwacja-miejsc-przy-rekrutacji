@@ -14,8 +14,8 @@ import { trigger, style, state, transition, animate, stagger, query } from '@ang
       transition('*=>*', [
         query('div', style({ opacity: '0.0'})),
         query(':self', style({transform: 'translateY(-30%)'})),
-        query(':self', animate('500ms', style({transform: 'translateY(0)'}))),
-        query('div', stagger('150ms', animate('500ms', style({ opacity: '1'}))), )
+        query(':self', animate('250ms', style({transform: 'translateY(0)'}))),
+        query('div', stagger('150ms', animate('150ms', style({ opacity: '1'}))), )
       ])
     ]),
   ]
@@ -79,20 +79,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate([this.returnUrl]);
         },
       error => {
-        console.log(error);
         this.loading = false;
-        if (error.status === 400) {
-          // handle validation error
-          const validationErrorDictionary = JSON.parse(error.text());
-          for (const fieldName in validationErrorDictionary) {
-            if (validationErrorDictionary.hasOwnProperty(fieldName)) {
-              this.errors.push(validationErrorDictionary[fieldName]);
-            }
-          }
-        } else {
-          this.errors.push('Coś poszło nie tak!');
-        }
-        console.log(this.errors);
+        this.errors = error[''];
       });
   }
 }

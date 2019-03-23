@@ -62,7 +62,6 @@ namespace ReservationPlaces.WebApp
 						ValidateAudience = true,
 						ValidateLifetime = true,
 						ValidateIssuerSigningKey = true,
-
 						ValidIssuer = ConstVal.BaseAddress,
 						ValidAudience = ConstVal.BaseAddress,
 						IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(ConstVal.SecurityKey)),
@@ -98,7 +97,8 @@ namespace ReservationPlaces.WebApp
 				options.UseSqlServer(ConstDbString.ConnectionStringDb));
 
 			services.AddIdentity<ApplicationUser, IdentityRole>()
-				.AddEntityFrameworkStores<ApplicationDbContext>();
+				.AddEntityFrameworkStores<ApplicationDbContext>()
+				.AddDefaultTokenProviders();
 
 
 			services.AddTransient<IEmailSender, EmailSender>();
