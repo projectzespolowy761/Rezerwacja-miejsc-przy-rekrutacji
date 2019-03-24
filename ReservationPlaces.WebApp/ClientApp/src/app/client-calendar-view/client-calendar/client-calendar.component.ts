@@ -2,7 +2,8 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewChild,
-  TemplateRef
+  TemplateRef,
+  ChangeDetectorRef
 } from '@angular/core';
 import {
   startOfDay,
@@ -25,6 +26,7 @@ import {
   CalendarWeekViewBeforeRenderEvent,
   CalendarMonthViewBeforeRenderEvent
 } from 'angular-calendar';
+import { DayViewHourSegment } from 'calendar-utils';
 
 const colors: any = {
   red: {
@@ -125,7 +127,7 @@ export class ClientCalendarComponent {
 
   activeDayIsOpen = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal, private cdr: ChangeDetectorRef) {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -226,6 +228,21 @@ export class ClientCalendarComponent {
         }
       });
     });
+  }
+
+  clickHourSegmentToCreate(
+    segment: DayViewHourSegment,
+  ) {
+    const dragToSelectEvent: CalendarEvent = {
+      id: this.events.length,
+      title: 'New event',
+      start: segment.date,
+      meta: {
+        tmpEvent: true
+      }
+    };
+    this.events = [...this.events, dragToSelectEvent];
+    this.cdr.detectChanges();
   }
 
 }

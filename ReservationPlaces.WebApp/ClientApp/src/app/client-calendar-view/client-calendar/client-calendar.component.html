@@ -82,6 +82,7 @@
       (eventClicked)="handleEvent('Clicked', $event.event);"
       (eventTimesChanged)="eventTimesChanged($event)"
       (beforeViewRender)="beforeWeekViewRender($event)"
+      (hourSegmentClicked)="clickHourSegmentToCreate($event)"
       [locale]="locale"
     >
     </mwl-calendar-week-view>
