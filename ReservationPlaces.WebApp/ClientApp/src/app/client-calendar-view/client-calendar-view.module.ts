@@ -10,14 +10,14 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 class CustomDateFormatter extends CalendarNativeDateFormatter {
 
   public dayViewHour({date, locale}: DateFormatterParams): string {
-    return new Intl.DateTimeFormat('ca', {
+    return new Intl.DateTimeFormat('pl', {
       hour: 'numeric',
       minute: 'numeric'
     }).format(date);
   }
 
   public weekViewHour({date, locale}: DateFormatterParams): string {
-    return new Intl.DateTimeFormat('ca', {
+    return new Intl.DateTimeFormat('pl', {
       hour: 'numeric',
       minute: 'numeric'
     }).format(date);

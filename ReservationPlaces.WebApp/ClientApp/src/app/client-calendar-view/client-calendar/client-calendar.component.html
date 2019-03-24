@@ -47,13 +47,13 @@
         >
           Week
         </div>
-        <div
+        <!-- <div
           class="btn btn-primary"
           (click)="setView(CalendarView.Day)"
           [class.active]="view === CalendarView.Day"
         >
           Day
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -65,7 +65,7 @@
       [events]="events"
       [refresh]="refresh"
       [activeDayIsOpen]="activeDayIsOpen"
-      (dayClicked)="dayClicked($event.day);viewDate = $event.day.date; view = 'day'"
+      (dayClicked)="dayClicked($event.day); setView(CalendarView.Week);"
       (eventClicked)="handleEvent('Clicked', $event.event)"
       (eventTimesChanged)="eventTimesChanged($event)"
       (beforeViewRender)="beforeMonthViewRender($event)"
@@ -73,7 +73,9 @@
     >
     </mwl-calendar-month-view>
     <mwl-calendar-week-view
-      [hourSegments]="4"
+    [dayStartHour]="4"
+    [hourSegments]="4"
+    [dayEndHour]="12"
       *ngSwitchCase="CalendarView.Week"
       [viewDate]="viewDate"
       [events]="events"
@@ -86,7 +88,7 @@
       [locale]="locale"
     >
     </mwl-calendar-week-view>
-    <mwl-calendar-day-view
+    <!-- <mwl-calendar-day-view
       [dayStartHour]="4"
       [hourSegments]="4"
       [dayEndHour]="12"
@@ -99,7 +101,7 @@
       (beforeViewRender)="beforeDayViewRender($event)"
       [locale]="locale"
     >
-    </mwl-calendar-day-view>
+    </mwl-calendar-day-view> -->
   </div>
 
   <ng-template #modalContent let-close="close">
@@ -116,7 +118,7 @@
       </div>
       <div>
         Event:
-        <pre>{{ modalData?.event | json }}</pre>
+        <pre>{{ modalData?.event | json  }}</pre>
       </div>
     </div>
     <div class="modal-footer">

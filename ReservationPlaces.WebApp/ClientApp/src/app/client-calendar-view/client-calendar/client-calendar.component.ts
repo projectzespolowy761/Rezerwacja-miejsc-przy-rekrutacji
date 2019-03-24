@@ -13,7 +13,8 @@ import {
   endOfMonth,
   isSameDay,
   isSameMonth,
-  addHours
+  addHours,
+  addMinutes
 } from 'date-fns';
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -127,7 +128,7 @@ export class ClientCalendarComponent {
 
   activeDayIsOpen = true;
 
-  constructor(private modal: NgbModal, private cdr: ChangeDetectorRef) {}
+  constructor(private modal: NgbModal) {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -166,13 +167,13 @@ export class ClientCalendarComponent {
     this.modal.open(this.modalContent, { size: 'lg' });
   }
 
-  addEvent(): void {
+  addEvent(startDate:Date , endDate:Date): void {
     this.events = [
       ...this.events,
       {
         title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
+        start: startDate,
+        end: endDate,
         color: colors.red,
         draggable: true,
         resizable: {
@@ -220,29 +221,20 @@ export class ClientCalendarComponent {
     });
   }
 
-  beforeDayViewRender(renderEvent: CalendarDayViewBeforeRenderEvent) {
-    renderEvent.body.hourGrid.forEach(hour => {
-      hour.segments.forEach((segment, index) => {
-        if (segment.date.getHours() >= 2 && segment.date.getHours() <= 5) {
-          segment.cssClass = 'bg-primary';
-        }
-      });
-    });
-  }
+  // beforeDayViewRender(renderEvent: CalendarDayViewBeforeRenderEvent) {
+  //   renderEvent.body.hourGrid.forEach(hour => {
+  //     hour.segments.forEach((segment, index) => {
+  //       if (segment.date.getHours() >= 2 && segment.date.getHours() <= 5) {
+  //         segment.cssClass = 'bg-primary';
+  //       }
+  //     });
+  //   });
+  // }
 
   clickHourSegmentToCreate(
     segment: DayViewHourSegment,
   ) {
-    const dragToSelectEvent: CalendarEvent = {
-      id: this.events.length,
-      title: 'New event',
-      start: segment.date,
-      meta: {
-        tmpEvent: true
-      }
-    };
-    this.events = [...this.events, dragToSelectEvent];
-    this.cdr.detectChanges();
+    this.addEvent(segment.date, addMinutes(segment.date, 15));
   }
 
 }
