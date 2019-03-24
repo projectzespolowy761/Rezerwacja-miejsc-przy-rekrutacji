@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -12,6 +13,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using ReservationPlaces.Common;
 using ReservationPlaces.Data;
+using ReservationPlaces.Data.Interfaces;
+using ReservationPlaces.Data.Repositories;
+using ReservationPlaces.Logic.Interfaces;
+using ReservationPlaces.Logic.Services;
 using ReservationPlaces.WebApp.Data;
 using ReservationPlaces.WebApp.Models;
 using ReservationPlaces.WebApp.Services;
@@ -34,6 +39,8 @@ namespace ReservationPlaces.WebApp
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+			services.AddAutoMapper();
 
 			services.AddCors(options =>
 			{
@@ -102,7 +109,8 @@ namespace ReservationPlaces.WebApp
 
 
 			services.AddTransient<IEmailSender, EmailSender>();
-			
+			services.AddTransient<IReservationRepository, ReservationRepository>();
+			services.AddTransient<IReservationServices, IReservationServices>();
 
 
 

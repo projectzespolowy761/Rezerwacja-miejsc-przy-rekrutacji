@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+$fa-font-path: "~font-awesome/fonts";
 @import 'variables';
+@import '../node_modules/font-awesome/scss/font-awesome';
 @import '../node_modules/bootstrap/scss/bootstrap';
+@import '../node_modules/angular-calendar/scss/angular-calendar';
+@import '../node_modules/flatpickr/dist/flatpickr.min.css';
 
 html{
   height: 100%;
@@ -14,7 +18,6 @@ $hollowBoxSize: 1.5em;
 $hollowLight: #ECECEC;
 $hollowDark: #007bff;
 $hollowTiming: 1.25s;
-
 
 .hollowLoader {
   width: $hollowBoxSize;
@@ -49,3 +52,65 @@ $hollowTiming: 1.25s;
   100% {transform: rotate(90deg);}
 }
 
+
+a {
+  outline: none !important;
+  text-decoration: none !important;
+}
+
+.dropdown .dropdown-menu {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+
+  -webkit-transition-timing-function: ease;
+  transition-timing-function:ease;
+
+  -webkit-transform: translate3d(0, 40%, 0);
+  transform: translate3d(0, 40%, 0);
+
+  pointer-events: none;
+
+  // max-height: 0;
+  display: block;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.dropdown.show .dropdown-menu {
+  // max-height: 200px;
+  opacity: 1;
+  pointer-events: all;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+
+  -webkit-transition-timing-function: ease;
+  transition-timing-function:ease;
+
+}
+
+::-webkit-input-placeholder {
+  color: #a19a9a;
+}
+:-ms-input-placeholder {
+  color: #a19a9a;
+}
+::-ms-input-placeholder {
+  color: #a19a9a;
+}
+::placeholder {
+  color: #a19a9a;
+}
+
+
+.cal-day-view .cal-hour-segment.cal-after-hour-start .cal-time {
+  display: block;
+  text-align: center;
+}
+
+.cal-week-view .cal-hour-segment.cal-after-hour-start .cal-time {
+  display: block;
+  text-align: center;
+}

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ReservationPlaces.Logic.Models
 {
-	class ReservationBLL : IReservationBLL
+	public class ReservationBLL : IReservationBLL
 	{
 		public int Id { get; set; }
 		public string UserId { get; set; }

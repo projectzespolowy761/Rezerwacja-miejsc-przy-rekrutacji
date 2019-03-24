@@ -1,20 +1,18 @@
-import { Component } from '@angular/core';
-import { first } from 'rxjs/operators';
-
-import { LoginViewModel } from '../_models';
-import { UserService, AuthenticationService } from '../_services';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+@Component({
+  selector: 'app-home-body',
+  templateUrl: './home-body.component.html',
+  styleUrls: ['./home-body.component.scss']
+})
+export class HomeBodyComponent implements OnInit {
 
-@Component({ templateUrl: 'home.component.html' })
-export class HomeComponent {
+  constructor(public http: HttpClient) { }
 
-  constructor(private userService: UserService, public http: HttpClient) { }
+  ngOnInit() {
+  }
 
-    ngOnInit() {
-
-    }
-
-  buttonClick() {
+buttonClick() {
     return this.http.get<any>('/home/get').subscribe(
       data => {
         console.log(data);
@@ -39,5 +37,6 @@ export class HomeComponent {
       }
     );
   }
+
 
 }

@@ -14,11 +14,11 @@ using ReservationPlaces.Logic.Interfaces;
 
 namespace ReservationPlaces.Logic.Services
 {
-	public class ReservationServices:IReservationServices
+	public class IReservationServices: Interfaces.IReservationServices
 	{
 	    private  ReservationRepository reservationRepository;
 
-        public ReservationServices()
+        public IReservationServices()
 	    {
             DesignTimeDbContextFactory dbContext=new DesignTimeDbContextFactory();
 	        ReservationPlacesDataContext data=dbContext.CreateDbContext(new []{"-a"});
@@ -26,11 +26,11 @@ namespace ReservationPlaces.Logic.Services
 
 	    }
 
-	    public Task AddReservation(IReservationDAL mReservationDal)
-	    {
+        public Task AddReservation(IReservationDAL mReservationDal)
+        {
             reservationRepository.Add(mReservationDal);
-           return Task.CompletedTask;
-	    }
+            return Task.CompletedTask;
+        }
 
-	}
+    }
 }

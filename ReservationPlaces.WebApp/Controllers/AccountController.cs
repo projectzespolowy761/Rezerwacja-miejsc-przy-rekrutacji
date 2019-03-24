@@ -9,7 +9,7 @@ using ReservationPlaces.WebApp.Models;
 using ReservationPlaces.WebApp.Services;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
-using ReservationPlaces.WebApplication.Models.AccountViewModels;
+using ReservationPlaces.WebApp.Models.AccountViewModels;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
@@ -73,7 +73,7 @@ namespace ReservationPlaces.WebApp.Controllers
 
 						claims = new List<Claim>
 						{
-							new Claim(ClaimTypes.Name, user.UserName),
+							new Claim(ClaimTypes.Name, user.Id),
 							new Claim(ClaimTypes.Role, "Administrator")
 						};
 					}
@@ -81,7 +81,7 @@ namespace ReservationPlaces.WebApp.Controllers
 				    claims = new List<Claim>
 				    {
 				        new Claim(ClaimTypes.NameIdentifier,user.Id),
-				        new Claim(ClaimTypes.Role, "Default")
+				        new Claim(ClaimTypes.Role, "User")
                     };
 
                   // var claim = await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.NameIdentifier,user.Id));

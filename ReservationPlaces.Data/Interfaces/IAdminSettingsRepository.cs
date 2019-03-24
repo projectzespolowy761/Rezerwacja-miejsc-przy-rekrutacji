@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ReservationPlaces.Data.Interfaces
 {
-	interface IAdminSettingsRepository: IRepository<IAdminSettingsDAL>
+	public interface IAdminSettingsRepository: IRepository<IAdminSettingsDAL>
 	{
 	}
 }

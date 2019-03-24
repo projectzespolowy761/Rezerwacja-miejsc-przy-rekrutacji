@@ -8,6 +8,6 @@ namespace ReservationPlaces.Logic.Interfaces
 {
 	interface IReservationServices
 	{
-	    Task AddReservation(IReservationDAL mReservationDal);
+	    //Task AddReservation(IReservationDAL mReservationDal);
 	}
 }
