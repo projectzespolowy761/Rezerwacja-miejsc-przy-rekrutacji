@@ -13,6 +13,8 @@ import { AdminCalendarComponent } from './admin-calendar-view/admin-calendar/adm
 import { HomeBodyComponent } from './client-views/home-body/home-body.component';
 import { ClientHeaderComponent } from './client-views/client-header/client-header.component';
 import { ClientFooterComponent } from './client-views/client-footer/client-footer.component';
+import { ReservationComponent } from './client-views/reservation/reservation.component';
+import { ContactFormComponent } from './client-views/contact-form/contact-form.component';
 
 
 const routes: Routes = [
@@ -20,6 +22,8 @@ const routes: Routes = [
     path: 'home', children:
     [
       { path: '', component: HomeBodyComponent },
+      { path: 'reservation', component: ReservationComponent },
+      { path: 'contact-form', component: ContactFormComponent },
       { path: '', component: ClientHeaderComponent ,  outlet: 'header' },
       { path: '', component: ClientFooterComponent ,  outlet: 'footer' },
     ]
