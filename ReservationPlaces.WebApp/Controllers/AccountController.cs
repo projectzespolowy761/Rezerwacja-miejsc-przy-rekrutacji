@@ -15,6 +15,7 @@ using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using System.Collections.Generic;
 using System.Security.Claims;
+using ReservationPlaces.Logic.Interfaces;
 
 namespace ReservationPlaces.WebApp.Controllers
 {
@@ -81,7 +82,7 @@ namespace ReservationPlaces.WebApp.Controllers
 				    claims = new List<Claim>
 				    {
 				        new Claim(ClaimTypes.NameIdentifier,user.Id),
-				        new Claim(ClaimTypes.Role, "User")
+				        new Claim(ClaimTypes.Role, "PowerUser")
                     };
 
                   // var claim = await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.NameIdentifier,user.Id));

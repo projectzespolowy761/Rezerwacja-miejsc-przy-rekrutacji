@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -8,8 +9,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.HttpSys;
 using ReservationPlaces.Data.Models;
+using ReservationPlaces.Logic.Interfaces;
 using ReservationPlaces.Logic.Services;
+using ReservationPlaces.WebApp.Models.ReservationsViewModels;
 
 namespace ReservationPlaces.WebApp.Controllers
 {
@@ -25,22 +29,25 @@ namespace ReservationPlaces.WebApp.Controllers
 
 
 		[HttpGet]
-		public IEnumerable<string> Get()
+		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "PowerUser")]
+        public  IEnumerable GetAllReservations()
 		{
-			return new string[] { "John Doe", "Jane Doe" };
+		    return _reservationServices.GetAllReservations();
 		}
 
 	
 		
 		[HttpPost]
 		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "PowerUser")]
-        public async Task<IActionResult> Post([FromBody]string name)
-		{
-            
+        public async Task<IActionResult> Post([FromBody]ReservationViewModel model)
+		{     
 		    string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-			await _reservationServices.AddReservation(new ReservationDAL() { Id = 2,ReservationDate=new DateTime(),UserId= userId });
-		    return Ok();
-		}
+            if (await _reservationServices.AddReservation(new ReservationDAL()
+                {StartVisit = new DateTime(), EndVisit = new DateTime(), UserId = userId}))
+                return Ok();
+            else
+                return BadRequest();
+        }
 
 		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 		[HttpGet]

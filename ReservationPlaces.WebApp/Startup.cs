@@ -23,7 +23,6 @@ using ReservationPlaces.WebApp.Services;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-
 namespace ReservationPlaces.WebApp
 {
 	public class Startup
@@ -110,8 +109,8 @@ namespace ReservationPlaces.WebApp
 
 			services.AddTransient<IEmailSender, EmailSender>();
 			services.AddTransient<IReservationRepository, ReservationRepository>();
-			services.AddTransient<IReservationServices, IReservationServices>();
-
+			services.AddTransient<IReservationServices, ReservationServices>();
+            
 
 
 

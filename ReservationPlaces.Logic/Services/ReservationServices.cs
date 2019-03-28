@@ -1,5 +1,6 @@
 ﻿using ReservationPlaces.Data.Repositories;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,11 +15,11 @@ using ReservationPlaces.Logic.Interfaces;
 
 namespace ReservationPlaces.Logic.Services
 {
-	public class IReservationServices: Interfaces.IReservationServices
+	public class ReservationServices: Interfaces.IReservationServices
 	{
 	    private  ReservationRepository reservationRepository;
 
-        public IReservationServices()
+        public ReservationServices()
 	    {
             DesignTimeDbContextFactory dbContext=new DesignTimeDbContextFactory();
 	        ReservationPlacesDataContext data=dbContext.CreateDbContext(new []{"-a"});
@@ -26,11 +27,28 @@ namespace ReservationPlaces.Logic.Services
 
 	    }
 
-        public Task AddReservation(IReservationDAL mReservationDal)
+        public Task<bool> AddReservation(IReservationDAL mReservationDal)
         {
-            reservationRepository.Add(mReservationDal);
-            return Task.CompletedTask;
+            if (reservationRepository.CheckData(mReservationDal.StartVisit, mReservationDal.EndVisit))
+            {
+                reservationRepository.Add(mReservationDal);
+                return Task.FromResult(true);
+            }
+            else
+            {
+                return Task.FromResult(false);
+            }
         }
+	    public Task CheckReservation(IReservationDAL mReservationDal)
+	    {
+            
+	        reservationRepository.Get(mReservationDal);
+	        return Task.CompletedTask;
+	    }
 
+	    public  IEnumerable GetAllReservations()
+	    {
+	        return reservationRepository.GetAll();
+        }
     }
 }

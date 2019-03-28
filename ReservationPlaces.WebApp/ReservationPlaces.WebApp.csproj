@@ -22,8 +22,16 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="Helper\**" />
+    <Compile Remove="Interfaces\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="Helper\**" />
+    <Content Remove="Interfaces\**" />
+    <EmbeddedResource Remove="Helper\**" />
+    <EmbeddedResource Remove="Interfaces\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="Helper\**" />
+    <None Remove="Interfaces\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
@@ -31,11 +39,6 @@
     <ProjectReference Include="..\ReservationPlaces.Common\ReservationPlaces.Common.csproj" />
     <ProjectReference Include="..\ReservationPlaces.Data\ReservationPlaces.Data.csproj" />
     <ProjectReference Include="..\ReservationPlaces.Logic\ReservationPlaces.Logic.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Helper\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

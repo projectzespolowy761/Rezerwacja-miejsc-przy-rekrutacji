@@ -54,11 +54,15 @@ namespace ReservationPlaces.Data.Repositories
 			_context.Remove(item);
 			_context.SaveChanges();
 		}
-
-		public IReservationDAL Get(int id)
+	    public IReservationDAL Get(int id)
+	    {
+	        _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+	        return _context.Reservation.FirstOrDefault(p => p.Id == id);
+	    }
+        public IReservationDAL Get(IReservationDAL model)
 		{
 			_context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
-			return _context.Reservation.FirstOrDefault(p => p.Id == id);
+			return _context.Reservation.FirstOrDefault(p => p.StartVisit == model.StartVisit);
 		}
 
 		public IEnumerable GetAll()
@@ -67,7 +71,26 @@ namespace ReservationPlaces.Data.Repositories
 			return _context.Reservation.ToList();
 		}
 
-		public IReservationDAL GetByUserId(string UserId)
+        public bool CheckData(DateTime StartVisit, DateTime EndVisit)
+        {
+            if (_context.Reservation.Any(o=>o.StartVisit==StartVisit)&& _context.Reservation.Any(o => o.EndVisit == EndVisit))
+            {
+                return false;
+            }
+
+            return true;
+        }
+        public string CheckSender(DateTime Visit)
+        {
+            ReservationDAL date = _context.Reservation.Where(o => (o.StartVisit - Visit).Days == 1).First();
+            if(date==null)
+            {
+                return null;
+            }
+
+            return date.UserId;
+        }
+        public IReservationDAL GetByUserId(string UserId)
 		{
 			_context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 			return _context.Reservation.FirstOrDefault(p => p.UserId == UserId);

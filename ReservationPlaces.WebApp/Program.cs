@@ -26,8 +26,8 @@ namespace ReservationPlaces.WebApp
 					var context = services.GetRequiredService<ApplicationDbContext>();
 					var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
 					var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-
-					DbUserSeeder.Initialize(context, userManager, roleManager).Wait();
+				    
+                    DbUserSeeder.Initialize(context, userManager, roleManager).Wait();
 				}
 				catch 
 				{

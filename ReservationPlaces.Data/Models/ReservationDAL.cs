@@ -11,6 +11,8 @@ namespace ReservationPlaces.Data.Models
 		public int Id { get; set; }
 		[MaxLength(450)]
 		public string UserId { get; set; }
-		public DateTime ReservationDate { get; set; }
-	}
+		public DateTime StartVisit { get; set; }
+	    public DateTime EndVisit { get; set; }
+
+    }
 }
