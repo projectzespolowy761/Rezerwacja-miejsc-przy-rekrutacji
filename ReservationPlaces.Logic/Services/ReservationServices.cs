@@ -16,26 +16,24 @@ using ReservationPlaces.Logic.Models;
 
 namespace ReservationPlaces.Logic.Services
 {
-	public class ReservationServices: Interfaces.IReservationServices
+	public class ReservationServices : IReservationServices
 	{
-	    private  ReservationRepository reservationRepository;
-        private readonly MapperConfiguration configuration;
-        public ReservationServices()
+	    private readonly IReservationRepository _reservationRepository;
+        private readonly IMapper _mapper;
+
+		public ReservationServices(IReservationRepository reservationRepository, IMapper mapper)
 	    {
-            DesignTimeDbContextFactory dbContext=new DesignTimeDbContextFactory();
-	        ReservationPlacesDataContext data=dbContext.CreateDbContext(new []{"-a"});
-	        reservationRepository = new ReservationRepository(data);
-            configuration = new MapperConfiguration(cfg => { cfg.CreateMap<IReservationDAL, ReservationDAL>(); });
-        }
+			_reservationRepository = reservationRepository;
+			_mapper = mapper;
+		}
 
         public Task<bool> AddReservation(ReservationBLL mReservationDal)
         {
 
-            if (reservationRepository.CheckData(mReservationDal.StartVisit, mReservationDal.EndVisit))
+            if (_reservationRepository.CheckData(mReservationDal.StartVisit, mReservationDal.EndVisit))
             {
-                IMapper iMapper = configuration.CreateMapper();
+				_reservationRepository.Add(_mapper.Map<ReservationBLL, IReservationDAL>(mReservationDal));
 
-                reservationRepository.Add(iMapper.Map<ReservationBLL, IReservationDAL>(mReservationDal));
                 return Task.FromResult(true);
             }
             else
@@ -45,12 +43,12 @@ namespace ReservationPlaces.Logic.Services
         }
 	    public Task<bool> CheckReservation(DateTime Start, DateTime End)
 	    {     
-	        return Task.FromResult(reservationRepository.CheckData( Start,  End)); 
+	        return Task.FromResult(_reservationRepository.CheckData( Start,  End)); 
 	    }
 
 	    public  IEnumerable GetAllReservations()
 	    {
-	        return reservationRepository.GetAll();
+	        return _reservationRepository.GetAll();
         }
     }
 }

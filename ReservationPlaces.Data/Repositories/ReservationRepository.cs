@@ -13,34 +13,20 @@ namespace ReservationPlaces.Data.Repositories
 {
 	public class ReservationRepository : IReservationRepository
 	{
-	    private readonly MapperConfiguration configuration;
-        private readonly ReservationPlacesDataContext _context;
-		public ReservationRepository(ReservationPlacesDataContext context)
+		private readonly IMapper _mapper;
+		private readonly ReservationPlacesDataContext _context;
+		public ReservationRepository(ReservationPlacesDataContext context, IMapper mapper)
 		{
 			_context = context;
-		    configuration = new MapperConfiguration(cfg => { cfg.CreateMap<IReservationDAL, ReservationDAL>(); });
-        }
+			_mapper = mapper;
+		}
 
 		public int Add(IReservationDAL item)
 		{
-		    IMapper iMapper = configuration.CreateMapper();
-
-		    var source = item;
-
-		    ReservationDAL reservation = iMapper.Map<IReservationDAL, ReservationDAL>(source);
-            try
-		        {
-		         _context.Reservation.Add(reservation);
-                 _context.SaveChangesAsync();
-		        }
-		        catch (DbUpdateException ex)
-		        {
-		            Console.WriteLine(ex);
-		        }
-
-            _context.Entry(item).State = EntityState.Detached;
-
-		    return 0;
+			var data = _context.Add(item);
+			_context.SaveChanges();
+			_context.Entry(item).State = EntityState.Detached;
+			return data.Entity.Id;
 		}
 
 		public void AddMany(IEnumerable<IReservationDAL> items)
@@ -82,17 +68,10 @@ namespace ReservationPlaces.Data.Repositories
         }
         public List<ReservationDAL> CheckSender()
         {
-            try
-            {
-                List<ReservationDAL> datelList =
-                _context.Reservation.Where(o => o.StartVisit.Date == DateTime.Today).ToList();
-                return datelList;
-            }
-            catch
-            {
-                return null;
-            }
-        }
+			List<ReservationDAL> datelList =
+				_context.Reservation.Where(o => o.StartVisit.Date == DateTime.Today).ToList();
+			return datelList;
+		}
         public IReservationDAL GetByUserId(string UserId)
 		{
 			_context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;

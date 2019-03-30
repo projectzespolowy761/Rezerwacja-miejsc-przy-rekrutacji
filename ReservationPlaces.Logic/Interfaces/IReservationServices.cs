@@ -12,7 +12,6 @@ namespace ReservationPlaces.Logic.Interfaces
 	{
         Task<bool> AddReservation(ReservationBLL mReservationDal);
         Task<bool> CheckReservation(DateTime Start, DateTime End);
-
         IEnumerable GetAllReservations();
 	}
 }

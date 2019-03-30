@@ -7,7 +7,7 @@ namespace ReservationPlaces.Common
 	public class ConstDbString
 	{
 	    public const string ConnectionStringDb =
-	        @"Server=REACTIVE-PC\SQLEXPRESS;Database=ReservationPlaces; Integrated Security=True;Trusted_Connection=Yes";
+			@"Server=NAZAR;Database=ReservationPlaces;User Id = nazar101999; Password=nazar;Trusted_Connection=False;MultipleActiveResultSets=true";
 
 	}
 }
