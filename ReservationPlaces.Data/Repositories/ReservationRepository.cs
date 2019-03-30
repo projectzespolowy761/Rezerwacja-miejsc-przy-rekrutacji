@@ -80,15 +80,18 @@ namespace ReservationPlaces.Data.Repositories
 
             return true;
         }
-        public string CheckSender(DateTime Visit)
+        public List<ReservationDAL> CheckSender()
         {
-            ReservationDAL date = _context.Reservation.Where(o => (o.StartVisit - Visit).Days == 1).First();
-            if(date==null)
+            try
+            {
+                List<ReservationDAL> datelList =
+                _context.Reservation.Where(o => o.StartVisit.Date == DateTime.Today).ToList();
+                return datelList;
+            }
+            catch
             {
                 return null;
             }
-
-            return date.UserId;
         }
         public IReservationDAL GetByUserId(string UserId)
 		{

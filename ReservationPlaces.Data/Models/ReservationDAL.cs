@@ -13,6 +13,6 @@ namespace ReservationPlaces.Data.Models
 		public string UserId { get; set; }
 		public DateTime StartVisit { get; set; }
 	    public DateTime EndVisit { get; set; }
-
+        public string Email { get; set; }
     }
 }

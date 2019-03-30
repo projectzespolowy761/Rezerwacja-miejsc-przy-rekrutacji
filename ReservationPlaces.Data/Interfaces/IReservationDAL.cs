@@ -7,6 +7,6 @@ namespace ReservationPlaces.Data.Interfaces
 		string UserId { get; set; }
 		DateTime StartVisit { get; set; }
 	    DateTime EndVisit { get; set; }
-
+        string Email { get; set; }
     }
 }

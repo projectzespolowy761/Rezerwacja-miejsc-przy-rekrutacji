@@ -82,6 +82,7 @@ namespace ReservationPlaces.WebApp.Controllers
 				    claims = new List<Claim>
 				    {
 				        new Claim(ClaimTypes.NameIdentifier,user.Id),
+                        new Claim(ClaimTypes.Email,model.Email),
 				        new Claim(ClaimTypes.Role, "PowerUser")
                     };
 

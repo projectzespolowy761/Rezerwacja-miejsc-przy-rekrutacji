@@ -12,26 +12,30 @@ using ReservationPlaces.Data;
 using ReservationPlaces.Data.Interfaces;
 using ReservationPlaces.Data.Models;
 using ReservationPlaces.Logic.Interfaces;
+using ReservationPlaces.Logic.Models;
 
 namespace ReservationPlaces.Logic.Services
 {
 	public class ReservationServices: Interfaces.IReservationServices
 	{
 	    private  ReservationRepository reservationRepository;
-
+        private readonly MapperConfiguration configuration;
         public ReservationServices()
 	    {
             DesignTimeDbContextFactory dbContext=new DesignTimeDbContextFactory();
 	        ReservationPlacesDataContext data=dbContext.CreateDbContext(new []{"-a"});
 	        reservationRepository = new ReservationRepository(data);
+            configuration = new MapperConfiguration(cfg => { cfg.CreateMap<IReservationDAL, ReservationDAL>(); });
+        }
 
-	    }
-
-        public Task<bool> AddReservation(IReservationDAL mReservationDal)
+        public Task<bool> AddReservation(ReservationBLL mReservationDal)
         {
+
             if (reservationRepository.CheckData(mReservationDal.StartVisit, mReservationDal.EndVisit))
             {
-                reservationRepository.Add(mReservationDal);
+                IMapper iMapper = configuration.CreateMapper();
+
+                reservationRepository.Add(iMapper.Map<ReservationBLL, IReservationDAL>(mReservationDal));
                 return Task.FromResult(true);
             }
             else
@@ -39,11 +43,9 @@ namespace ReservationPlaces.Logic.Services
                 return Task.FromResult(false);
             }
         }
-	    public Task CheckReservation(IReservationDAL mReservationDal)
-	    {
-            
-	        reservationRepository.Get(mReservationDal);
-	        return Task.CompletedTask;
+	    public Task<bool> CheckReservation(DateTime Start, DateTime End)
+	    {     
+	        return Task.FromResult(reservationRepository.CheckData( Start,  End)); 
 	    }
 
 	    public  IEnumerable GetAllReservations()
