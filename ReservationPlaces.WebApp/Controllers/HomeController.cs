@@ -1,43 +1,71 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.HttpSys;
+using ReservationPlaces.Data.Interfaces;
+using ReservationPlaces.Data.Models;
 using ReservationPlaces.Logic.Interfaces;
 using ReservationPlaces.Logic.Models;
 using ReservationPlaces.Logic.Services;
-using ReservationPlaces.WebApp.Models;
-using ReservationPlaces.WebApp.Services;
+using ReservationPlaces.WebApp.Models.ReservationsViewModels;
 
 namespace ReservationPlaces.WebApp.Controllers
 {
 	[Route("[controller]/[action]")]
 	public class HomeController : Controller
     {
-		private readonly IReservationServices _reservationServices;
+        private readonly IReservationServices _reservationServices;
 
 		public HomeController(IReservationServices reservationServices)
         {
 			_reservationServices = reservationServices;
 		}
 
+
 		[HttpGet]
-		public IEnumerable<string> Get()
+		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "PowerUser")]
+        public  IEnumerable GetAllReservations()
 		{
-			return new string[] { "John Doe", "Jane Doe" };
+		    return _reservationServices.GetAllReservations();
 		}
 
 	
 		
 		[HttpPost]
-		public IEnumerable<string> Post([FromBody]string name)
+		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "PowerUser")]
+        public async Task<IActionResult> Post([FromForm]ReservationViewModel model)
 		{
-			_reservationServices.AddReservation(new ReservationBLL() { Id = 2,ReservationDate=new DateTime(),UserId="asdas"});
-			return new string[] { "John Doe", "Jane Doe" };
-		}
+            try
+            {
+                string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                string email = User.FindFirst(ClaimTypes.Email)?.Value;
+                bool allow = await _reservationServices.CheckReservation(model.StartVisit,model.EndVisit);
+                if (allow)
+                {
+                  var res= Mapper.Map(model, new ReservationBLL());
+                    await _reservationServices.AddReservation(res);
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+        }
+            catch
+            {
+                return BadRequest();
+            }
+
+        }
 
 		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 		[HttpGet]

@@ -8,7 +8,9 @@ namespace ReservationPlaces.Logic.Models
 	public class ReservationBLL : IReservationBLL
 	{
 		public int Id { get; set; }
-		public string UserId { get; set; }
-		public DateTime ReservationDate { get; set; }
-	}
+        public string UserId { get; set; }
+        public DateTime StartVisit { get; set; }
+        public DateTime EndVisit { get; set; }
+        public string Email { get; set; }
+    }
 }

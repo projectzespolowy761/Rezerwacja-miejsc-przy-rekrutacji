@@ -3,6 +3,7 @@ using ReservationPlaces.Data.Models;
 using ReservationPlaces.Logic.Models;
 using ReservationPlaces.WebApp.Models;
 using System.Collections.Generic;
+using ReservationPlaces.WebApp.Models.ReservationsViewModels;
 
 namespace ReservationPlaces.WebApp.CommonWeb
 {
@@ -12,8 +13,8 @@ namespace ReservationPlaces.WebApp.CommonWeb
 		{
 			CreateMap<ReservationDAL, ReservationBLL>();
 			CreateMap<ReservationBLL, ReservationDAL>();
+            CreateMap<ReservationViewModel, ReservationBLL>();
 
-
-		}
+        }
 	}
 }

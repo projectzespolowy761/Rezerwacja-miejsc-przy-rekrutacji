@@ -15,6 +15,7 @@ using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using System.Collections.Generic;
 using System.Security.Claims;
+using ReservationPlaces.Logic.Interfaces;
 
 namespace ReservationPlaces.WebApp.Controllers
 {
@@ -26,7 +27,6 @@ namespace ReservationPlaces.WebApp.Controllers
 		private readonly SignInManager<ApplicationUser> _signInManager;
 		private readonly RoleManager<IdentityRole> _roleManager;
 		private readonly IEmailSender _emailSender;
-
 		public AccountController(
 			UserManager<ApplicationUser> userManager,
 			SignInManager<ApplicationUser> signInManager,
@@ -51,7 +51,7 @@ namespace ReservationPlaces.WebApp.Controllers
 				// This doesn't count login failures towards account lockout
 				// To enable password failures to trigger account lockout, set lockoutOnFailure: true
 				var user = await _signInManager.UserManager.FindByEmailAsync(model.Email);
-				if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+			    if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
 				{
 					ModelState.AddModelError(string.Empty, "Zły adres email,hasło lub email nie został potwierdzony");
 					return BadRequest(ModelState);
@@ -74,12 +74,19 @@ namespace ReservationPlaces.WebApp.Controllers
 
 						claims = new List<Claim>
 						{
-							new Claim(ClaimTypes.Name, user.UserName),
+							new Claim(ClaimTypes.Name, user.Id),
 							new Claim(ClaimTypes.Role, "Administrator")
 						};
 					}
 					}
+				    claims = new List<Claim>
+				    {
+				        new Claim(ClaimTypes.NameIdentifier,user.Id),
+                        new Claim(ClaimTypes.Email,model.Email),
+				        new Claim(ClaimTypes.Role, "PowerUser")
+                    };
 
+                  // var claim = await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.NameIdentifier,user.Id));
 					var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Common.ConstVal.SecurityKey));
 					var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 

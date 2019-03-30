@@ -23,7 +23,6 @@ using ReservationPlaces.WebApp.Services;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-
 namespace ReservationPlaces.WebApp
 {
 	public class Startup
@@ -69,7 +68,6 @@ namespace ReservationPlaces.WebApp
 						ValidateAudience = true,
 						ValidateLifetime = true,
 						ValidateIssuerSigningKey = true,
-
 						ValidIssuer = ConstVal.BaseAddress,
 						ValidAudience = ConstVal.BaseAddress,
 						IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(ConstVal.SecurityKey)),
@@ -112,7 +110,7 @@ namespace ReservationPlaces.WebApp
 			services.AddTransient<IEmailSender, EmailSender>();
 			services.AddTransient<IReservationRepository, ReservationRepository>();
 			services.AddTransient<IReservationServices, ReservationServices>();
-
+            
 
 
 

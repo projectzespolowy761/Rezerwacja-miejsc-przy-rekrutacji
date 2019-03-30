@@ -1,11 +1,9 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Mail;
-using System.Threading.Tasks;
 
-namespace ReservationPlaces.WebApp.Services
+namespace ReservationPlaces.EmailService
 {
-    // This class is used by the application to send email for account confirmation and password reset.
-    // For more details see https://go.microsoft.com/fwlink/?LinkID=532713
     public class EmailSender : IEmailSender
     {
 
@@ -15,7 +13,7 @@ namespace ReservationPlaces.WebApp.Services
             var toAddress = new MailAddress(email);
             const string fromPassword = "bartwarzik101999";
 
-           var smtp = new SmtpClient
+            var smtp = new SmtpClient
             {
                 Host = "smtp.gmail.com",
                 Port = 587,
@@ -24,16 +22,15 @@ namespace ReservationPlaces.WebApp.Services
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
             };
-			using (var message = new MailMessage(fromAddress, toAddress)
-			{
-				IsBodyHtml = true,
-               Subject = subject,
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                IsBodyHtml = true,
+                Subject = subject,
                 Body = bodyMessage
             })
-            
-            smtp.Send(message);
-            
+
+                smtp.Send(message);
+
         }
     }
 }
-

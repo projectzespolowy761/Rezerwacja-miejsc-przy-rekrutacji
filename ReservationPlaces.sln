@@ -5,11 +5,13 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReservationPlaces.WebApp", "ReservationPlaces.WebApp\ReservationPlaces.WebApp.csproj", "{6B09F550-A7ED-4319-8CE8-77053DA47332}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReservationPlaces.Data", "ReservationPlaces.Data\ReservationPlaces.Data.csproj", "{096F9DC6-B8E0-45E4-97E0-059349AFA9AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReservationPlaces.Data", "ReservationPlaces.Data\ReservationPlaces.Data.csproj", "{096F9DC6-B8E0-45E4-97E0-059349AFA9AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReservationPlaces.Common", "ReservationPlaces.Common\ReservationPlaces.Common.csproj", "{5D600509-B0BF-4E57-A18F-29CEB050CA64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReservationPlaces.Common", "ReservationPlaces.Common\ReservationPlaces.Common.csproj", "{5D600509-B0BF-4E57-A18F-29CEB050CA64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReservationPlaces.Logic", "ReservationPlaces.Logic\ReservationPlaces.Logic.csproj", "{469982AA-09C8-4835-8226-45DC67FF9A73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReservationPlaces.Logic", "ReservationPlaces.Logic\ReservationPlaces.Logic.csproj", "{469982AA-09C8-4835-8226-45DC67FF9A73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReservationPlaces.EmailChecker", "ReservationPlaces.EmailChecker\ReservationPlaces.EmailChecker.csproj", "{4056DC9C-5D6A-436B-8B24-9E88CD371477}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{469982AA-09C8-4835-8226-45DC67FF9A73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{469982AA-09C8-4835-8226-45DC67FF9A73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{469982AA-09C8-4835-8226-45DC67FF9A73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4056DC9C-5D6A-436B-8B24-9E88CD371477}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4056DC9C-5D6A-436B-8B24-9E88CD371477}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4056DC9C-5D6A-436B-8B24-9E88CD371477}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4056DC9C-5D6A-436B-8B24-9E88CD371477}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
