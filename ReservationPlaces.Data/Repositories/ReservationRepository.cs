@@ -23,9 +23,9 @@ namespace ReservationPlaces.Data.Repositories
 
 		public int Add(IReservationDAL item)
 		{
-			var data = _context.Add(item);
+			var data = _context.Reservation.Add(_mapper.Map<IReservationDAL,ReservationDAL>(item));
 			_context.SaveChanges();
-			_context.Entry(item).State = EntityState.Detached;
+			_context.Entry(_mapper.Map<IReservationDAL, ReservationDAL>(item)).State = EntityState.Detached;
 			return data.Entity.Id;
 		}
 

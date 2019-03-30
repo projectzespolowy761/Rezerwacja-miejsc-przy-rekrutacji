@@ -1,71 +1,82 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Server.HttpSys;
-using ReservationPlaces.Data.Interfaces;
-using ReservationPlaces.Data.Models;
 using ReservationPlaces.Logic.Interfaces;
 using ReservationPlaces.Logic.Models;
-using ReservationPlaces.Logic.Services;
 using ReservationPlaces.WebApp.Models.ReservationsViewModels;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace ReservationPlaces.WebApp.Controllers
 {
 	[Route("[controller]/[action]")]
 	public class HomeController : Controller
-    {
-        private readonly IReservationServices _reservationServices;
+	{
+		private readonly IReservationServices _reservationServices;
+		private readonly IMapper _mapper;
 
-		public HomeController(IReservationServices reservationServices)
-        {
+		public HomeController(IReservationServices reservationServices, IMapper mapper)
+		{
 			_reservationServices = reservationServices;
+			_mapper = mapper;
 		}
 
 
 		[HttpGet]
 		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "PowerUser")]
-        public  IEnumerable GetAllReservations()
+		public IEnumerable GetAllReservations()
 		{
-		    return _reservationServices.GetAllReservations();
+			return _reservationServices.GetAllReservations();
 		}
 
-	
-		
+
+
 		[HttpPost]
 		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "PowerUser")]
-        public async Task<IActionResult> Post([FromForm]ReservationViewModel model)
+		public async Task<IActionResult> AddReservation([FromBody]ReservationViewModel model)
 		{
-            try
-            {
-                string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                string email = User.FindFirst(ClaimTypes.Email)?.Value;
-                bool allow = await _reservationServices.CheckReservation(model.StartVisit,model.EndVisit);
-                if (allow)
-                {
-                  var res= Mapper.Map(model, new ReservationBLL());
-                    await _reservationServices.AddReservation(res);
-                    return Ok();
-                }
-                else
-                {
-                    return BadRequest();
-                }
-        }
-            catch
-            {
-                return BadRequest();
-            }
+			try
+			{
+				if (ModelState.IsValid)
+				{
+					model.UserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-        }
+					model.Email = User.FindFirst(ClaimTypes.Email)?.Value;
+
+					model.StartVisit=new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+						.AddMilliseconds(Convert.ToInt64(model.DateStart))
+						.ToLocalTime();
+
+					model.EndVisit = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+						.AddMilliseconds(Convert.ToInt64(model.DateEnd))
+						.ToLocalTime();
+
+					bool allow = await _reservationServices.CheckReservation(model.StartVisit, model.EndVisit);
+					if (allow)
+					{
+						await _reservationServices.AddReservation(_mapper.Map<ReservationViewModel, ReservationBLL>(model));
+						return Ok();
+					}
+					else
+					{
+						ModelState.AddModelError(string.Empty, "Termin jest zajęty");
+						return BadRequest(ModelState);
+					}
+
+
+				}
+				return BadRequest(ModelState);
+			}
+			catch (Exception e)
+			{
+				return BadRequest();
+			}
+		}
 
 		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 		[HttpGet]

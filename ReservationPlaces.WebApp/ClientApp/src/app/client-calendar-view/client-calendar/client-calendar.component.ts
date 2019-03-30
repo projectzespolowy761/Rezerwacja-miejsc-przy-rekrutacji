@@ -29,6 +29,9 @@ import {
 } from 'angular-calendar';
 import { DayViewHourSegment } from 'calendar-utils';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ReservationService } from '../../_services';
+import { ReservationModel } from '../../_models';
+import { first } from 'rxjs/operators';
 
 const colors: any = {
   red: {
@@ -129,7 +132,11 @@ export class ClientCalendarComponent {
 
   activeDayIsOpen = false;
 
-  constructor(private modal: NgbModal,  private formBuilder: FormBuilder) {
+  constructor(
+    private modal: NgbModal,
+    private formBuilder: FormBuilder,
+    private reservationService: ReservationService
+  ) {
 
   }
 
@@ -171,11 +178,12 @@ export class ClientCalendarComponent {
   // }
 
 
-  addEvent(startDate: Date , endDate: Date): void {
+  addEvent(startDate: Date, endDate: Date, title: string): void {
+
     this.events = [
       ...this.events,
       {
-        title: 'New event',
+        title: title,
         start: startDate,
         end: endDate,
         color: colors.red,
@@ -250,20 +258,31 @@ export class ClientCalendarComponent {
     });
   }
 
+
+
+ 
+
+ 
+
+
+  //reservation
+
+  staticSegment: DayViewHourSegment
+  reservationForm: FormGroup;
+  loading = false;
+  submitted = false;
+  errors: string[];
+
+
   clickHourSegmentToCreate(
     segment: DayViewHourSegment,
   ) {
     const newDate = addDays(startOfDay(new Date()), 1);
     if (segment.date >= newDate && segment.date.getDay() !== 6 && segment.date.getDay() !== 0) {
-          this.handleEvent();
-          // this.addEvent(segment.date, addMinutes(segment.date, 15));
-        }
+      this.handleEvent();
+      this.staticSegment = segment;
+    }
   }
-
-
-
-
-
 
 
   handleEvent(): void {
@@ -272,31 +291,56 @@ export class ClientCalendarComponent {
   }
 
 
-  //reservation
-  reservationForm: FormGroup;
-  loading = false;
-  submitted = false;
 
 
   createForm(){
     this.reservationForm = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.pattern('^[A-Z-zóąśłżźćńÓĄŚŁŻŹĆŃ][a-z-zóąśłżźćńÓĄŚŁŻŹĆŃ]{2,30}')]],
-      surname: ['', [Validators.required, Validators.pattern('^[A-Z-zóąśłżźćńÓĄŚŁŻŹĆŃ][a-z-zóąśłżźćńÓĄŚŁŻŹĆŃ]{2,30}')]],
-      pesel: ['', [Validators.required, Validators.pattern('^\d{11}$')]]
+      username: ['', [Validators.required, Validators.pattern('^[A-Z-zęóąśłżźćńÓĄŚŁŻŹĆŃ][a-z-zóęąśłżźćńÓĄŚŁŻŹĆŃ]{2,30}')]],
+      surname: ['', [Validators.required, Validators.pattern('^[A-Z-zęóąśłżźćńÓĄŚŁŻŹĆŃ][a-z-zóęąśłżźćńÓĄŚŁŻŹĆŃ]{2,30}')]],
+      pesel: ['', [Validators.required, Validators.pattern('^[0-9]{11}')]]
     });
+    this.errors = [];
   }
 
   // convenience getter for easy access to form fields
   get f() { return this.reservationForm.controls; }
 
   onSubmit() {
+
     this.submitted = true;
+
+    this.errors = [];
 
     // stop here if form is invalid
     if (this.reservationForm.invalid) {
       return;
     }
 
+    const reservation: ReservationModel = new ReservationModel();
+
+
+    reservation.name = this.f.username.value;
+    reservation.surname = this.f.surname.value;
+    reservation.pesel = this.f.pesel.value;
+    reservation.dateStart = this.staticSegment.date.getTime()+'';
+    reservation.dateEnd = addMinutes(this.staticSegment.date, 15).getTime()+ '';
+
+
+    this.loading = true;
+    this.reservationService.createReservation(reservation)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.loading = false;
+          this.submitted = false;
+          this.addEvent(this.staticSegment.date, addMinutes(this.staticSegment.date, 15), reservation.name + ' ' + reservation.surname);
+          this.modal.dismissAll();
+        },
+        error => {
+          this.submitted = false;
+          this.loading = false;
+          this.errors = error[''];
+        });
 
 
   }

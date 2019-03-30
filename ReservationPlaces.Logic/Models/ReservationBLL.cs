@@ -12,5 +12,8 @@ namespace ReservationPlaces.Logic.Models
         public DateTime StartVisit { get; set; }
         public DateTime EndVisit { get; set; }
         public string Email { get; set; }
-    }
+		public string Name { get; set; }
+		public string Surname { get; set; }
+		public string Pesel { get; set; }
+	}
 }

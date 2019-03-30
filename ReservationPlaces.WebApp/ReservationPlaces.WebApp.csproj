@@ -36,9 +36,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\_interfaces\reservation-model.ts" />
+    <None Remove="ClientApp\src\app\_models\reservation-model.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ReservationPlaces.Common\ReservationPlaces.Common.csproj" />
     <ProjectReference Include="..\ReservationPlaces.Data\ReservationPlaces.Data.csproj" />
     <ProjectReference Include="..\ReservationPlaces.Logic\ReservationPlaces.Logic.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\_interfaces\reservation-model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\_models\reservation-model.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
