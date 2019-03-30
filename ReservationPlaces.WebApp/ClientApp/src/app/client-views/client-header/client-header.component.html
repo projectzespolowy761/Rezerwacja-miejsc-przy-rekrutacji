@@ -12,9 +12,12 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['contact-form']">Kontakt</a>
         </li>
-        <li class="nav-item pl-3">
-            <a class="nav-link" [routerLink]="['/account/login']"> <i class="fa fa-sign-in pr-1 fa-lg" aria-hidden="true"></i> Sing in</a>
-          </li>
+        <li *ngIf="!statusUser" class="nav-item pl-3">
+            <a class="nav-link" [routerLink]="['/account/login']"> <i class="fa fa-sign-in pr-1 fa-lg" aria-hidden="true"></i> Zaloguj </a>
+        </li>
+        <li *ngIf="statusUser" class="nav-item pl-3">
+          <a class="nav-link" [routerLink]="['/account/login']"> <i class="fa fa-sign-in pr-1 fa-lg" aria-hidden="true"></i> Wyloguj </a>
+      </li>
     </ul>
   </div>
 </div>

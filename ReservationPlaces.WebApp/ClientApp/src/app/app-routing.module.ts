@@ -22,8 +22,10 @@ const routes: Routes = [
     path: 'home', children:
     [
       { path: '', component: HomeBodyComponent },
-      { path: 'reservation', component: ReservationComponent },
+      { path: 'reservation', component: ReservationComponent, canActivate: [AuthGuard] },
       { path: 'contact-form', component: ContactFormComponent },
+
+      { path: 'admin', component: AdminCalendarComponent },
       { path: '', component: ClientHeaderComponent ,  outlet: 'header' },
       { path: '', component: ClientFooterComponent ,  outlet: 'footer' },
     ]

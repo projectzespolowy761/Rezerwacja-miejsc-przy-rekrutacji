@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../../_services';
 
 @Component({
   selector: 'app-client-header',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientHeaderComponent implements OnInit {
 
-  constructor() { }
+  statusUser : any;
+
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
+    this.statusUser =this.authenticationService.currentUserValue;
   }
+
+
 
 }
