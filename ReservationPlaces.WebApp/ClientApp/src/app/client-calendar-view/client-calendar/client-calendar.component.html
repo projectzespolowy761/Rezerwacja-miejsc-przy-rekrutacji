@@ -8,14 +8,14 @@
           [(viewDate)]="viewDate"
           (viewDateChange)="closeOpenMonthViewDay()"
         >
-          Previous
+        Poprzedni
         </div>
         <div
           class="btn btn-outline-secondary"
           mwlCalendarToday
           [(viewDate)]="viewDate"
         >
-          Today
+        Dzisiaj
         </div>
         <div
           class="btn btn-primary"
@@ -24,7 +24,7 @@
           [(viewDate)]="viewDate"
           (viewDateChange)="closeOpenMonthViewDay()"
         >
-          Next
+        Kolejny
         </div>
       </div>
     </div>
@@ -38,22 +38,22 @@
           (click)="setView(CalendarView.Month)"
           [class.active]="view === CalendarView.Month"
         >
-          Month
+        Miesiąc
         </div>
         <div
           class="btn btn-primary"
           (click)="setView(CalendarView.Week)"
           [class.active]="view === CalendarView.Week"
         >
-          Week
+        Tydzień
         </div>
-        <!-- <div
+        <div
           class="btn btn-primary"
           (click)="setView(CalendarView.Day)"
           [class.active]="view === CalendarView.Day"
         >
-          Day
-        </div> -->
+        Dzień
+        </div>
       </div>
     </div>
   </div>
@@ -73,9 +73,9 @@
     >
     </mwl-calendar-month-view>
     <mwl-calendar-week-view
-    [dayStartHour]="4"
+    [dayStartHour]="8"
     [hourSegments]="4"
-    [dayEndHour]="12"
+    [dayEndHour]="15"
       *ngSwitchCase="CalendarView.Week"
       [viewDate]="viewDate"
       [events]="events"
@@ -88,10 +88,10 @@
       [locale]="locale"
     >
     </mwl-calendar-week-view>
-    <!-- <mwl-calendar-day-view
-      [dayStartHour]="4"
+    <mwl-calendar-day-view
+      [dayStartHour]="8"
       [hourSegments]="4"
-      [dayEndHour]="12"
+      [dayEndHour]="15"
       *ngSwitchCase="CalendarView.Day"
       [viewDate]="viewDate"
       [events]="events"
@@ -99,31 +99,95 @@
       (eventClicked)="handleEvent('Clicked', $event.event)"
       (eventTimesChanged)="eventTimesChanged($event)"
       (beforeViewRender)="beforeDayViewRender($event)"
+      (hourSegmentClicked)="clickHourSegmentToCreate($event)"
       [locale]="locale"
     >
-    </mwl-calendar-day-view> -->
+    </mwl-calendar-day-view>
   </div>
 
   <ng-template #modalContent let-close="close">
     <div class="modal-header">
-      <h5 class="modal-title">Event action occurred</h5>
+      <h5 class="modal-title">Zarezerwacja miejsca</h5>
       <button type="button" class="close" (click)="close()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body">
-      <div>
-        Action:
-        <pre>{{ modalData?.action }}</pre>
-      </div>
-      <div>
-        Event:
-        <pre>{{ modalData?.event | json  }}</pre>
-      </div>
+    <div class="modal-body ">
+      <form
+        class="form-signin"
+        [formGroup]="reservationForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="form-label-group">
+          <input
+            type="text"
+            id="inputName"
+            formControlName="username"
+            class="form-control"
+            placeholder="Imie"
+            spellcheck="false"
+            [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+          />
+          <label for="inputName">Imie</label>
+          <div
+            *ngIf="submitted && f.username.errors"
+            class="invalid-feedback"
+          >
+          <div *ngIf="f.username.errors.required">Imie jest wymagany</div>
+          <div *ngIf="f.username.errors.pattern">Imie nie jest poprawne. Imie musi zaczynać się od wielkiej litery</div>
+          </div>
+        </div>
+
+        <div class="form-label-group">
+          <input
+            type="text"
+            id="inputSurName"
+            formControlName="surname"
+            class="form-control"
+            spellcheck="false"
+            placeholder="Nazwisko"
+            [ngClass]="{ 'is-invalid': submitted && f.surname.errors }"
+          />
+          <label for="inputSurName">Nazwisko</label>
+          <div *ngIf="submitted && f.surname.errors" class="invalid-feedback">
+            <div *ngIf="f.surname.errors.required">Nazwisko jest wymagane</div>
+            <div *ngIf="f.surname.errors.pattern">Nazwisko nie jest poprawne. Nazwisko musi zaczynać się od wielkiej litery.</div>
+          </div>
+        </div>
+
+        <div class="form-label-group">
+          <input
+            type="text"
+            id="inputPesel"
+            formControlName="pesel"
+            class="form-control"
+            spellcheck="false"
+            placeholder="Powtórz hasło"
+            [ngClass]="{ 'is-invalid': submitted && f.pesel.errors }"
+          />
+          <label for="inputPesel">Pesel</label>
+          <div *ngIf="submitted && f.pesel.errors" class="invalid-feedback">
+            <div *ngIf="f.pesel.errors.required">Pesel jest wymagany</div>
+            <div *ngIf="f.pesel.errors.pattern">Pesel nie jest poprawny</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+            <button [disabled]="loading" class="btn btn-lg btn-primary btn-block text-uppercase">
+              Zarezerwuj miejsce
+              <div *ngIf="loading" class="hollowLoader float-left">
+                <div class="largeBox"></div>
+                <div class="smallBox"></div>
+              </div>
+
+            </button>
+
+        </div>
+      </form>
     </div>
-    <div class="modal-footer">
+    <!-- <div class="modal-footer">
       <button type="button" class="btn btn-outline-secondary" (click)="close()">
         OK
       </button>
-    </div>
+    </div> -->
   </ng-template>

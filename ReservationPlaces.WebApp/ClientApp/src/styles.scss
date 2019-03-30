@@ -14,6 +14,15 @@ body{
   height: 100%;
 }
 
+.cal-disabled , .cal-disabled :hover {
+  background-color: #eee;
+  pointer-events: none !important;
+}
+
+.cal-disabled .cal-day-number {
+  opacity: 0.1;
+}
+
 $hollowBoxSize: 1.5em;
 $hollowLight: #ECECEC;
 $hollowDark: #007bff;
@@ -52,6 +61,17 @@ $hollowTiming: 1.25s;
   100% {transform: rotate(90deg);}
 }
 
+/* modal animation */
+.modal-content{
+  animation-name: example;
+  animation-duration: 0.3s;
+}
+
+@keyframes example {
+  0%   {transform: scale(0.5)}
+  75%  {transform: scale(1.1)}
+  100% {transform: scale(1)}
+}
 
 a {
   outline: none !important;

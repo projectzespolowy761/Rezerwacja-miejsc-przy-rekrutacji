@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClientCalendarComponent } from './client-calendar/client-calendar.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter, CalendarDateFormatter, DateFormatterParams, CalendarNativeDateFormatter } from 'angular-calendar';
@@ -29,6 +29,7 @@ class CustomDateFormatter extends CalendarNativeDateFormatter {
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     NgbModalModule,
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({

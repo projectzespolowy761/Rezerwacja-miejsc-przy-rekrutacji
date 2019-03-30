@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
 
     this.errors = [];
 
-    console.log(this.registerForm);
+
 
     // stop here if form is invalid
     if (this.registerForm.invalid) {
