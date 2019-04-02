@@ -113,78 +113,86 @@
       </button>
     </div>
     <div class="modal-body ">
-      <form class="form-signin"
-            [formGroup]="reservationForm"
-            (ngSubmit)="onSubmit()">
-        <div class="form-label-group">
-          <input type="text"
-                 id="inputName"
-                 formControlName="username"
-                 class="form-control"
-                 placeholder="Imie"
-                 spellcheck="false"
-                 [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-          <label for="inputName">Imie</label>
-          <div *ngIf="submitted && f.username.errors"
-               class="invalid-feedback">
-            <div *ngIf="f.username.errors.required">Imie jest wymagany</div>
-            <div *ngIf="f.username.errors.pattern">Imie nie jest poprawne. Imie musi zaczynać się od wielkiej litery</div>
-          </div>
-        </div>
-
-        <div class="form-label-group">
-          <input type="text"
-                 id="inputSurName"
-                 formControlName="surname"
-                 class="form-control"
-                 spellcheck="false"
-                 placeholder="Nazwisko"
-                 [ngClass]="{ 'is-invalid': submitted && f.surname.errors }" />
-          <label for="inputSurName">Nazwisko</label>
-          <div *ngIf="submitted && f.surname.errors" class="invalid-feedback">
-            <div *ngIf="f.surname.errors.required">Nazwisko jest wymagane</div>
-            <div *ngIf="f.surname.errors.pattern">Nazwisko nie jest poprawne. Nazwisko musi zaczynać się od wielkiej litery.</div>
-          </div>
-        </div>
-
-        <div class="form-label-group">
-          <input type="text"
-                 id="inputPesel"
-                 formControlName="pesel"
-                 class="form-control"
-                 spellcheck="false"
-                 placeholder="Powtórz hasło"
-                 [ngClass]="{ 'is-invalid': submitted && f.pesel.errors }" />
-          <label for="inputPesel">Pesel</label>
-          <div *ngIf="submitted && f.pesel.errors" class="invalid-feedback">
-            <div *ngIf="f.pesel.errors.required">Pesel jest wymagany</div>
-            <div *ngIf="f.pesel.errors.pattern">Pesel nie jest poprawny</div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <button [disabled]="loading" class="btn btn-lg btn-primary btn-block text-uppercase">
-            Zarezerwuj miejsce
-            <div *ngIf="loading" class="hollowLoader float-left">
-              <div class="largeBox"></div>
-              <div class="smallBox"></div>
+      <h6 [hidden]="eventCreated" class="text-primary">Witamy. Rezerwacja została założona. Dane reserwacji:</h6>
+        <form class="form-signin"
+              [formGroup]="reservationForm"
+              (ngSubmit)="onSubmit()">
+          <div class="form-label-group">
+            <input type="text"
+                   id="inputName"
+                   formControlName="username"
+                   class="form-control"
+                   placeholder="Imie"
+                   spellcheck="false"
+                   [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+            <label for="inputName">Imie</label>
+            <div *ngIf="submitted && f.username.errors"
+                 class="invalid-feedback">
+              <div *ngIf="f.username.errors.required">Imie jest wymagany</div>
+              <div *ngIf="f.username.errors.pattern">Imie nie jest poprawne. Imie musi zaczynać się od wielkiej litery</div>
             </div>
+          </div>
 
-          </button>
-        </div>
-        <hr class="my-4" />
-        <div class="alert alert-danger" role="alert" *ngIf="errors.length > 0">
-          <ul>
-            <li *ngFor="let error of errors">
-              {{ errors }}
-            </li>
-          </ul>
-        </div>
-      </form>
+          <div class="form-label-group">
+            <input type="text"
+                   id="inputSurName"
+                   formControlName="surname"
+                   class="form-control"
+                   spellcheck="false"
+                   placeholder="Nazwisko"
+                   [ngClass]="{ 'is-invalid': submitted && f.surname.errors }" />
+            <label for="inputSurName">Nazwisko</label>
+            <div *ngIf="submitted && f.surname.errors" class="invalid-feedback">
+              <div *ngIf="f.surname.errors.required">Nazwisko jest wymagane</div>
+              <div *ngIf="f.surname.errors.pattern">Nazwisko nie jest poprawne. Nazwisko musi zaczynać się od wielkiej litery.</div>
+            </div>
+          </div>
+
+          <div class="form-label-group">
+            <input type="text"
+                   id="inputPesel"
+                   formControlName="pesel"
+                   class="form-control"
+                   spellcheck="false"
+                   placeholder="Powtórz hasło"
+                   [ngClass]="{ 'is-invalid': submitted && f.pesel.errors }" />
+            <label for="inputPesel">Pesel</label>
+            <div *ngIf="submitted && f.pesel.errors" class="invalid-feedback">
+              <div *ngIf="f.pesel.errors.required">Pesel jest wymagany</div>
+              <div *ngIf="f.pesel.errors.pattern">Pesel nie jest poprawny</div>
+            </div>
+          </div>
+
+          <div *ngIf="eventCreated; else event">
+            <div class="form-group">
+              <button [disabled]="loading" class="btn btn-lg btn-primary btn-block text-uppercase">
+                Zarezerwuj miejsce
+                <div *ngIf="loading" class="hollowLoader float-left">
+                  <div class="largeBox"></div>
+                  <div class="smallBox"></div>
+                </div>
+
+              </button>
+            </div>
+            <hr class="my-4" />
+            <div class="alert alert-danger" role="alert" *ngIf="errors.length > 0">
+              <ul>
+                <li *ngFor="let error of errors">
+                  {{ errors }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </form>
     </div>
-    <!-- <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary" (click)="close()">
-        OK
-      </button>
-    </div> -->
+    <ng-template #event>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" (click)="deleteEvent($event);close()">
+          Usuń rezerwację
+        </button>
+        <button type="button" class="btn btn-outline-secondary" (click)="close()">
+          OK
+        </button>
+      </div>
+    </ng-template>
   </ng-template>

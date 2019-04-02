@@ -51,7 +51,7 @@ const colors: any = {
 
 @Component({
   selector: 'app-client-calendar',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  //changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './client-calendar.component.html',
   styleUrls: ['./client-calendar.component.scss']
 })
@@ -90,44 +90,44 @@ export class ClientCalendarComponent {
   refresh: Subject<any> = new Subject();
 
   events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: new Date(),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    }
+    //{
+    //  start: subDays(startOfDay(new Date()), 1),
+    //  end: addDays(new Date(), 1),
+    //  title: 'A 3 day event',
+    //  color: colors.red,
+    //  actions: this.actions,
+    //  allDay: true,
+    //  resizable: {
+    //    beforeStart: true,
+    //    afterEnd: true
+    //  },
+    //  draggable: true
+    //},
+    //{
+    //  start: startOfDay(new Date()),
+    //  title: 'An event with no end date',
+    //  color: colors.yellow,
+    //  actions: this.actions
+    //},
+    //{
+    //  start: subDays(endOfMonth(new Date()), 3),
+    //  end: addDays(endOfMonth(new Date()), 3),
+    //  title: 'A long event that spans 2 months',
+    //  color: colors.blue,
+    //  allDay: true
+    //},
+    //{
+    //  start: addHours(startOfDay(new Date()), 2),
+    //  end: new Date(),
+    //  title: 'A draggable and resizable event',
+    //  color: colors.yellow,
+    //  actions: this.actions,
+    //  resizable: {
+    //    beforeStart: true,
+    //    afterEnd: true
+    //  },
+    //  draggable: true
+    //}
   ];
 
   activeDayIsOpen = false;
@@ -178,11 +178,12 @@ export class ClientCalendarComponent {
   // }
 
 
-  addEvent(startDate: Date, endDate: Date, title: string): void {
+  addEvent(startDate: Date, endDate: Date, title: string, pesel:string): void {
 
     this.events = [
       ...this.events,
       {
+        id: pesel,
         title: title,
         start: startDate,
         end: endDate,
@@ -196,9 +197,15 @@ export class ClientCalendarComponent {
     ];
   }
 
-  // deleteEvent(eventToDelete: CalendarEvent) {
-  //   this.events = this.events.filter(event => event !== eventToDelete);
-  // }
+   //deleteEvent(eventToDelete: CalendarEvent) {
+   //  this.events = this.events.filter(event => event !== eventToDelete);
+   //}
+
+  deleteEvent() {
+    var eventToDelete = this.events[0];
+     this.events = this.events.filter(event => event !== eventToDelete);
+   }
+
 
   setView(view: CalendarView) {
     this.view = view;
@@ -215,7 +222,14 @@ export class ClientCalendarComponent {
       //   day.cssClass = 'cal-disabled';
       // }
       const newDate = new Date();
-      if (day.date <= newDate  || day.date.getDay() === 6 || day.date.getDay() === 0) {
+      if (!this.events.length) {
+        if (day.date <= newDate || day.date.getDay() === 6 || day.date.getDay() === 0) {
+          day.cssClass = 'cal-disabled';
+        }
+      }
+      else {
+        if (day.date.getDate() != this.events[0].start.getDate() || day.date.getMonth() != this.events[0].start.getMonth()
+          || day.date.getFullYear() != this.events[0].start.getFullYear())
         day.cssClass = 'cal-disabled';
       }
     });
@@ -233,12 +247,15 @@ export class ClientCalendarComponent {
           //   segment.cssClass = 'cal-disabled';
           // }
           const newDate = addDays(startOfDay(new Date()), 1);
-          if (
-            segment.date <= newDate || segment.date.getDay() === 6 || segment.date.getDay() === 0
-          ) {
-            segment.cssClass = 'cal-disabled';
+          if (!this.events.length) {
+            if (
+              segment.date <= newDate || segment.date.getDay() === 6 || segment.date.getDay() === 0
+            ) {
+              segment.cssClass = 'cal-disabled';
+            }
           }
-
+          else
+            segment.cssClass = 'cal-disabled';
         });
       });
     });
@@ -251,9 +268,13 @@ export class ClientCalendarComponent {
         //   segment.cssClass = 'cal-disabled';
         // }
         const newDate = addDays(startOfDay(new Date()), 1);
-        if (segment.date <= newDate || segment.date.getDay() === 6 || segment.date.getDay() === 0) {
-          segment.cssClass = 'cal-disabled';
+        if (!this.events.length) {
+          if (segment.date <= newDate || segment.date.getDay() === 6 || segment.date.getDay() === 0) {
+            segment.cssClass = 'cal-disabled';
+          }
         }
+        else
+          segment.cssClass = 'cal-disabled';
       });
     });
   }
@@ -278,10 +299,14 @@ export class ClientCalendarComponent {
     segment: DayViewHourSegment,
   ) {
     const newDate = addDays(startOfDay(new Date()), 1);
-    if (segment.date >= newDate && segment.date.getDay() !== 6 && segment.date.getDay() !== 0) {
-      this.handleEvent();
-      this.staticSegment = segment;
+    if (!this.events.length) {
+      if (segment.date >= newDate && segment.date.getDay() !== 6 && segment.date.getDay() !== 0) {
+        this.handleEvent();
+        this.staticSegment = segment;
+      }
     }
+  
+
   }
 
 
@@ -291,14 +316,28 @@ export class ClientCalendarComponent {
   }
 
 
+  eventCreated: boolean;
 
 
-  createForm(){
-    this.reservationForm = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.pattern('^[A-Z-zęóąśłżźćńÓĄŚŁŻŹĆŃ][a-z-zóęąśłżźćńÓĄŚŁŻŹĆŃ]{2,30}')]],
-      surname: ['', [Validators.required, Validators.pattern('^[A-Z-zęóąśłżźćńÓĄŚŁŻŹĆŃ][a-z-zóęąśłżźćńÓĄŚŁŻŹĆŃ]{2,30}')]],
-      pesel: ['', [Validators.required, Validators.pattern('^[0-9]{11}')]]
-    });
+  createForm() {
+    this.eventCreated = !this.events.length;
+    console.log(this.eventCreated);
+    if (!this.events.length) {
+      this.reservationForm = this.formBuilder.group({
+        username: ['', [Validators.required, Validators.pattern('^[A-Z-zęóąśłżźćńÓĄŚŁŻŹĆŃ][a-z-zóęąśłżźćńÓĄŚŁŻŹĆŃ]{2,30}')]],
+        surname: ['', [Validators.required, Validators.pattern('^[A-Z-zęóąśłżźćńÓĄŚŁŻŹĆŃ][a-z-zóęąśłżźćńÓĄŚŁŻŹĆŃ]{2,30}')]],
+        pesel: ['', [Validators.required, Validators.pattern('^[0-9]{11}')]]
+      });
+    }
+    else
+    {
+      var splitted = this.events[0].title.split(" ");
+      this.reservationForm = this.formBuilder.group({
+        username: [{ value: splitted[0], disabled: true }, [Validators.required, Validators.pattern('^[A-Z-zęóąśłżźćńÓĄŚŁŻŹĆŃ][a-z-zóęąśłżźćńÓĄŚŁŻŹĆŃ]{2,30}')]],
+        surname: [{ value: splitted[1], disabled: true }, [Validators.required, Validators.pattern('^[A-Z-zęóąśłżźćńÓĄŚŁŻŹĆŃ][a-z-zóęąśłżźćńÓĄŚŁŻŹĆŃ]{2,30}')]],
+        pesel: [{ value: this.events[0].id, disabled: true }, [Validators.required, Validators.pattern('^[0-9]{11}')]]
+      });
+    }
     this.errors = [];
   }
 
@@ -333,8 +372,9 @@ export class ClientCalendarComponent {
         data => {
           this.loading = false;
           this.submitted = false;
-          this.addEvent(this.staticSegment.date, addMinutes(this.staticSegment.date, 15), reservation.name + ' ' + reservation.surname);
+          this.addEvent(this.staticSegment.date, addMinutes(this.staticSegment.date, 15), reservation.name + ' ' + reservation.surname, reservation.pesel);
           this.modal.dismissAll();
+          //this.refresh.next();
         },
         error => {
           this.submitted = false;
