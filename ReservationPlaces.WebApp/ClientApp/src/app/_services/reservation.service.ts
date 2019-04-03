@@ -14,4 +14,13 @@ export class ReservationService {
     return this.http.post(`/home/AddReservation`, resevation); 
   }
 
+  getReservations() {
+    return this.http.get(`/home/GetAllReservations`);
+  }
+
+  deleteReservation()
+  {
+    return this.http.post('/home/DeleteReservation', '');
+  }
+
 }

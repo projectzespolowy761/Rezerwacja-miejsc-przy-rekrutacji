@@ -130,6 +130,8 @@ export class ClientCalendarComponent {
     //}
   ];
 
+  reservations: any;
+
   activeDayIsOpen = false;
 
   constructor(
@@ -137,7 +139,13 @@ export class ClientCalendarComponent {
     private formBuilder: FormBuilder,
     private reservationService: ReservationService
   ) {
-
+    reservationService.getReservations()
+      .subscribe(
+        data => {
+          this.reservations = data;
+          this.addEvent(new Date(this.reservations.userReservation.startVisit), new Date(this.reservations.userReservation.endVisit), this.reservations.userReservation.name + ' ' + this.reservations.userReservation.surname, this.reservations.userReservation.pesel);
+         console.log(data)
+        });
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -187,11 +195,11 @@ export class ClientCalendarComponent {
         title: title,
         start: startDate,
         end: endDate,
-        color: colors.red,
+        color: colors.blue,
         draggable: false,
         resizable: {
-          beforeStart: true,
-          afterEnd: true
+          beforeStart: false,
+          afterEnd: false
         }
       }
     ];
@@ -202,8 +210,12 @@ export class ClientCalendarComponent {
    //}
 
   deleteEvent() {
-    var eventToDelete = this.events[0];
-     this.events = this.events.filter(event => event !== eventToDelete);
+    this.reservationService.deleteReservation().subscribe(
+      data => {
+        var eventToDelete = this.events[0];
+        this.events = this.events.filter(event => event !== eventToDelete);
+      });
+   
    }
 
 
@@ -246,13 +258,18 @@ export class ClientCalendarComponent {
           // ) {
           //   segment.cssClass = 'cal-disabled';
           // }
+          
+
           const newDate = addDays(startOfDay(new Date()), 1);
           if (!this.events.length) {
+
+            this.reservations.reservations.forEach(reserv => { 
             if (
               segment.date <= newDate || segment.date.getDay() === 6 || segment.date.getDay() === 0
-            ) {
+              || segment.date.getTime() == new Date(reserv.startVisit).getTime()) {
               segment.cssClass = 'cal-disabled';
-            }
+              }
+            })
           }
           else
             segment.cssClass = 'cal-disabled';
@@ -269,9 +286,11 @@ export class ClientCalendarComponent {
         // }
         const newDate = addDays(startOfDay(new Date()), 1);
         if (!this.events.length) {
-          if (segment.date <= newDate || segment.date.getDay() === 6 || segment.date.getDay() === 0) {
-            segment.cssClass = 'cal-disabled';
-          }
+          this.reservations.reservations.forEach(reserv => {
+            if (segment.date <= newDate || segment.date.getDay() === 6 || segment.date.getDay() === 0 || segment.date.getTime() == new Date(reserv.startVisit).getTime()) {
+              segment.cssClass = 'cal-disabled';
+            }
+          });
         }
         else
           segment.cssClass = 'cal-disabled';
@@ -299,13 +318,24 @@ export class ClientCalendarComponent {
     segment: DayViewHourSegment,
   ) {
     const newDate = addDays(startOfDay(new Date()), 1);
+    var BreakException = {};
     if (!this.events.length) {
-      if (segment.date >= newDate && segment.date.getDay() !== 6 && segment.date.getDay() !== 0) {
-        this.handleEvent();
-        this.staticSegment = segment;
+      var a 
+      try {
+      this.reservations.reservations.forEach(reserv => {
+        a= segment.date.getTime() == new Date(reserv.startVisit).getTime();
+        
+        if (a) throw BreakException;
+       
+      });
+      } catch (e) {
       }
+      if (segment.date >= newDate && segment.date.getDay() !== 6 && segment.date.getDay() !== 0 && a == false) {
+          this.handleEvent();
+          this.staticSegment = segment;
+        }
+     
     }
-  
 
   }
 

@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Security.Claims;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ReservationPlaces.WebApp.Controllers
@@ -29,11 +30,39 @@ namespace ReservationPlaces.WebApp.Controllers
 
 		[HttpGet]
 		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "PowerUser")]
-		public IEnumerable GetAllReservations()
+		public object GetAllReservations()
 		{
-			return _reservationServices.GetAllReservations();
+			try
+			{
+				var reservations = _reservationServices.GetAllReservations();
+
+				var userReservation = _reservationServices.GetUserReservation(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+
+				var result = new { UserReservation = userReservation, Reservations = reservations };
+
+				return result;
+			}
+			catch
+			{
+				return null;
+			}
 		}
 
+		[HttpPost]
+		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "PowerUser")]
+		public IActionResult DeleteReservation()
+		{
+			try
+			{
+				if (_reservationServices.DeleteReservation(User.FindFirst(ClaimTypes.NameIdentifier)?.Value).Result)
+					return Ok();
+				else return BadRequest();
+			}
+			catch
+			{
+				return BadRequest();
+			}
+		}
 
 
 		[HttpPost]

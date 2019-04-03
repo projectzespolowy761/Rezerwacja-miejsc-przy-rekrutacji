@@ -34,11 +34,12 @@ namespace ReservationPlaces.Data.Repositories
 			throw new NotImplementedException();
 		}
 
-		public async Task Delete(int id)
+		public async Task<bool> DeleteReservation(string UserId)
 		{
-			var item = await _context.Reservation.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
+			var item = await _context.Reservation.AsNoTracking().FirstOrDefaultAsync(p =>p.UserId==UserId);
 			_context.Remove(item);
 			_context.SaveChanges();
+			return true;
 		}
 	    public IReservationDAL Get(int id)
 	    {
@@ -54,7 +55,7 @@ namespace ReservationPlaces.Data.Repositories
 		public IEnumerable GetAll()
 		{
 			_context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
-			return _context.Reservation.ToList();
+			return _context.Reservation.OrderBy(x=>x.StartVisit).ToList();
 		}
 
         public bool CheckData(DateTime StartVisit, DateTime EndVisit)
@@ -83,6 +84,17 @@ namespace ReservationPlaces.Data.Repositories
 			_context.Update(item);
 			_context.SaveChanges();
 			_context.Entry(item).State = EntityState.Detached;
+		}
+
+		public IReservationDAL UserReservation(string UserId)
+		{
+			_context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+			return _context.Reservation.FirstOrDefault(p => p.UserId== UserId);
+		}
+
+		public Task Delete(int id)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

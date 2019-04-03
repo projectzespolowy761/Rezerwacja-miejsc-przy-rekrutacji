@@ -46,9 +46,19 @@ namespace ReservationPlaces.Logic.Services
 	        return Task.FromResult(_reservationRepository.CheckData( Start,  End)); 
 	    }
 
-	    public  IEnumerable GetAllReservations()
+		public Task<bool> DeleteReservation(string UserId)
+		{
+			return _reservationRepository.DeleteReservation(UserId);
+		}
+
+		public  IEnumerable GetAllReservations()
 	    {
 	        return _reservationRepository.GetAll();
         }
-    }
+
+		public ReservationBLL GetUserReservation(string UserId)
+		{
+			return _mapper.Map<IReservationDAL, ReservationBLL>(_reservationRepository.UserReservation(UserId));
+		}
+	}
 }
